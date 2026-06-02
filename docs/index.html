@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V24a</title>
+  <title>Nello Training Planner V24b</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f7f6f2;--surface:#fbfaf7;--surface2:#f2f6f7;--border:#d8d5ce;--text:#28251d;--muted:#68655d;
+      --bg:#f7f6f2;--surface:#fbfaf7;--border:#d8d5ce;--text:#28251d;--muted:#68655d;
       --primary:#7ea3ad;--primary-dark:#5f8791;--ok:#d8ebee;--shadow:0 10px 30px rgba(25,30,35,.08);--radius:20px;
     }
     *{box-sizing:border-box}
@@ -26,20 +26,23 @@
     label{font-size:14px;font-weight:600}
     input,select,button{font:inherit}
     input,select{width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:14px;background:white}
-    .filebox{padding:14px 15px;border:1px dashed var(--border);border-radius:14px;background:white;min-height:54px;display:flex;align-items:center}
+    .filebox{padding:14px 15px;border:1px dashed var(--border);border-radius:14px;background:white;min-height:54px;display:flex;align-items:center;word-break:break-all;font-size:14px}
     .notice{background:var(--ok);border-radius:16px;padding:15px;color:#39646d;margin-top:6px}
     .btn{border:0;border-radius:14px;padding:15px 18px;font-weight:700;cursor:pointer}
     .btn.primary{background:var(--primary);color:white}.btn.primary:hover{background:var(--primary-dark)}
     .result{margin-top:12px;padding:14px 16px;border-radius:16px;background:#eef7ea;border:1px solid #cfe0c9;color:#355534}
-    .panel{display:grid;gap:12px}
-    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini{border:1px solid var(--border);border-radius:16px;padding:14px;background:white}
-    .mini strong{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    .ftpBox{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:16px;background:#f7faf4}
-    .ftpBox strong{display:block;margin-bottom:6px}
-    .ftpHint{color:var(--muted);font-size:14px;line-height:1.45}
+    /* Coach panel */
+    .coachVoice{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+    .coachAvatar{font-size:36px;flex-shrink:0;margin-top:2px}
+    .coachBubble{background:var(--ok);border-radius:0 16px 16px 16px;padding:14px 16px;color:#2a5260;font-size:14px;line-height:1.6;flex:1;border:1px solid #b8d8e0}
+    .coachDetails{display:none;gap:8px;margin-top:4px}
+    .coachDetails.visible{display:grid}
+    .coachRow{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:white;border:1px solid var(--border);border-radius:12px}
+    .coachLabel{font-size:13px;color:var(--muted);font-weight:500}
+    .coachValue{font-size:14px;font-weight:600;color:var(--text)}
+    .coachNote{margin-top:10px;padding:12px 14px;border-radius:12px;background:#f7faf4;border:1px solid #d0e4cc;color:var(--muted);font-size:13px;line-height:1.5;display:none}
+    .coachNote.visible{display:block}
     /* Countdown */
-    .countdown{margin-top:16px}
     .countdownInner{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
     .countNum{background:white;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center}
     .countNum span{display:block;font-size:32px;font-weight:800;color:var(--primary-dark)}
@@ -49,7 +52,6 @@
     .phase-sharpen{background:#fff8e1;border:1px solid #f0d080;color:#7a5a00}
     .phase-taper{background:#fde8e8;border:1px solid #f0b8b8;color:#7a2020}
     /* Library */
-    .library{margin-top:16px}
     .libControls{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
     .libList{display:grid;gap:10px;max-height:280px;overflow:auto;padding-right:4px}
     .libItem{border:1px solid var(--border);border-radius:16px;padding:12px 14px;background:white;text-align:left;cursor:pointer;width:100%}
@@ -57,7 +59,6 @@
     .libItem strong{display:block;margin-bottom:4px}
     .libMeta{color:var(--muted);font-size:13px;line-height:1.4}
     /* Planner */
-    .weekPlan{margin-top:16px}
     .weekGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
     .dayCard{border:1px solid var(--border);border-radius:16px;padding:12px;background:white;min-height:160px}
     .dayCard.turbo{border-color:#7ea3ad;background:#f0f7f9}
@@ -72,36 +73,27 @@
     .dayCard .suggestion{margin-top:8px;font-size:11px;font-style:italic;color:#5f8791;border-top:1px solid var(--border);padding-top:6px;line-height:1.4}
     .controls{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
     /* Log */
-    .logSection{margin-top:16px}
     .logList{display:grid;gap:10px}
     .logItem{border:1px solid var(--border);border-radius:16px;padding:14px;background:white}
     .logItem strong{display:block;margin-bottom:6px}
     .logMeta{color:var(--muted);font-size:13px;line-height:1.45}
     .logClear{margin-top:12px;background:none;border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--muted);cursor:pointer;display:none}
     .logClear:hover{border-color:#c44;color:#c44}
-    /* Coach panel */
-    .coachCard { position: relative; }
-    .coachVoice { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
-    .coachAvatar { font-size: 36px; flex-shrink: 0; margin-top: 2px; }
-    .coachBubble { background: var(--ok); border-radius: 0 16px 16px 16px; padding: 14px 16px; color: #2a5260; font-size: 14px; line-height: 1.6; flex: 1; border: 1px solid #b8d8e0; }
-    .coachDetails { display: grid; gap: 8px; margin-top: 4px; }
-    .coachRow { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: white; border: 1px solid var(--border); border-radius: 12px; }
-    .coachLabel { font-size: 13px; color: var(--muted); font-weight: 500; }
-    .coachValue { font-size: 14px; font-weight: 600; color: var(--text); }
-    .ftpHint { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #f7faf4; border: 1px solid #d0e4cc; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .section-gap{margin-top:16px}
     @media(max-width:900px){
-      .grid,.row,.metrics,.controls,.weekGrid,.countdownInner{grid-template-columns:1fr}
+      .grid,.row,.controls,.weekGrid,.countdownInner{grid-template-columns:1fr}
       h1{font-size:28px}.libControls{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">V24a &middot; 3 Jun 2026 &middot; Coaching panel fix</div>
+  <div class="badge">V24b &middot; 3 Jun 2026 &middot; Coach panel fix</div>
   <h1>Nello Training Planner</h1>
   <p class="sub">Browser-first training planner. Your training log is saved locally and persists between visits.</p>
 
   <div class="grid">
+    <!-- LEFT: Import -->
     <section class="card">
       <h2>Ride import and confirmation</h2>
       <div class="row">
@@ -137,37 +129,38 @@
         </div>
       </div>
       <div class="notice" id="statusBox">Set FTP to match MyWhoosh then choose today's FIT file.</div>
-      <div class="panel" style="margin-top:12px">
+      <div style="margin-top:12px;display:grid;gap:12px">
         <button class="btn primary" id="recordBtn" type="button">Record confirmed workout</button>
         <div id="recordResult"></div>
       </div>
     </section>
 
-    <section class="card coachCard">
+    <!-- RIGHT: Coach -->
+    <section class="card">
       <h2>Coach feedback</h2>
-      <div class="coachVoice" id="coachVoice">
+      <div class="coachVoice">
         <div class="coachAvatar">&#127947;</div>
-        <div class="coachBubble" id="coachBubble">
-          Record a workout and I'll give you personalised feedback on how it fits your Nello preparation.
-        </div>
+        <div class="coachBubble" id="coachBubble">Record a workout and I'll give you personalised feedback on how it fits your Nello preparation.</div>
       </div>
-      <div class="coachDetails" id="coachDetails" style="display:none">
+      <div class="coachDetails" id="coachDetails">
         <div class="coachRow"><span class="coachLabel">Suggested FTP</span><span class="coachValue" id="ftpSuggestion">240 W</span></div>
-        <div class="coachRow"><span class="coachLabel">Session type</span><span class="coachValue" id="sessionMatch">—</span></div>
+        <div class="coachRow"><span class="coachLabel">Session type</span><span class="coachValue" id="sessionMatch">&#8212;</span></div>
         <div class="coachRow"><span class="coachLabel">FTP basis</span><span class="coachValue" id="ftpSource">Manual entry</span></div>
-        <div class="coachRow"><span class="coachLabel">Next recommended</span><span class="coachValue" id="nextAction">—</span></div>
+        <div class="coachRow"><span class="coachLabel">Next recommended</span><span class="coachValue" id="nextAction">&#8212;</span></div>
       </div>
-      <div class="ftpHint" id="ftpHint" style="display:none"></div>
+      <div class="coachNote" id="coachNote"></div>
     </section>
   </div>
 
-  <section class="card countdown">
+  <!-- Countdown -->
+  <section class="card section-gap">
     <h2>Countdown to Nello</h2>
     <div class="countdownInner" id="countdownInner"></div>
     <div class="phaseBox" id="phaseBox"></div>
   </section>
 
-  <section class="card library">
+  <!-- Library -->
+  <section class="card section-gap">
     <h2>Workout library</h2>
     <div class="libControls">
       <div class="field">
@@ -192,7 +185,8 @@
     <div class="libList" id="libList"></div>
   </section>
 
-  <section class="card weekPlan">
+  <!-- Planner -->
+  <section class="card section-gap">
     <h2>Weekly planner</h2>
     <div class="controls">
       <div class="field">
@@ -207,49 +201,60 @@
         </select>
       </div>
     </div>
-    <div class="notice" id="planNote">Mon/Wed/Sat = turbo. Tue = long group ride. Thu = group ride. Fri &amp; Sun = rest.</div>
-    <div class="weekGrid" id="weekGrid"></div>
+    <div class="notice" id="planNote"></div>
+    <div class="weekGrid section-gap" id="weekGrid"></div>
   </section>
 
-  <section class="card logSection">
+  <!-- Log -->
+  <section class="card section-gap">
     <h2>Training log</h2>
-    <p id="logNote">Recorded rides are saved locally and will persist between visits.</p>
+    <p id="logNote">Recorded rides are saved locally and persist between visits.</p>
     <div class="logList" id="logList"></div>
     <button class="logClear" id="clearLog" type="button">Clear all log entries</button>
   </section>
 </div>
 
 <script>
-  const STORAGE_KEY = 'nello_log_v1';
-  const $ = id => document.getElementById(id);
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'nello_log_v1';
+  function el(id) { return document.getElementById(id); }
 
   function loadSaved() {
-    try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : []; }
-    catch(e) { return []; }
+    try { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : []; }
+    catch (e) { return []; }
   }
   function saveToDisk(arr) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch(e) {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
   }
 
-  const state = { file: null, saved: loadSaved() };
+  var state = { file: null, saved: loadSaved() };
 
-  const library = [
-    {name:'Endurance 60 min &middot; Flat',    type:'Endurance',  notes:'Steady Z2 with short cadence changes.'},
-    {name:'Endurance 90 min &middot; Rolling', type:'Endurance',  notes:'Longer aerobic ride with a few short ramps.'},
-    {name:'Tempo 2x15',                 type:'Tempo',      notes:'Two blocks of tempo (Z3) with easy recoveries.'},
-    {name:'Sweet spot 3x10',            type:'Sweet spot', notes:'Three 10-minute efforts around sweet-spot power.'},
-    {name:'Threshold 3x8',              type:'Threshold',  notes:'Three near-FTP efforts with full recoveries.'},
-    {name:'VO2 5x3',                    type:'VO2 max',    notes:'Short, hard repeats with generous rest.'},
-    {name:'Easy recovery 45',           type:'Recovery',   notes:'Very easy spin with relaxed cadence.'},
-    {name:'Group ride &middot; Social',        type:'Group ride', notes:'Chattier ride, mostly endurance with a few surges.'},
-    {name:'Group ride &middot; Racey',         type:'Group ride', notes:'Livelier group ride, expect tempo and above.'}
+  var library = [
+    { name: 'Endurance 60 min · Flat',    type: 'Endurance',  notes: 'Steady Z2 with short cadence changes.' },
+    { name: 'Endurance 90 min · Rolling', type: 'Endurance',  notes: 'Longer aerobic ride with a few short ramps.' },
+    { name: 'Tempo 2x15',                       type: 'Tempo',      notes: 'Two blocks of tempo (Z3) with easy recoveries.' },
+    { name: 'Sweet spot 3x10',                  type: 'Sweet spot', notes: 'Three 10-minute efforts around sweet-spot power.' },
+    { name: 'Threshold 3x8',                    type: 'Threshold',  notes: 'Three near-FTP efforts with full recoveries.' },
+    { name: 'VO2 5x3',                          type: 'VO2 max',    notes: 'Short, hard repeats with generous rest.' },
+    { name: 'Easy recovery 45',                 type: 'Recovery',   notes: 'Very easy spin with relaxed cadence.' },
+    { name: 'Group ride · Social',         type: 'Group ride', notes: 'Chattier ride, mostly endurance with a few surges.' },
+    { name: 'Group ride · Racey',          type: 'Group ride', notes: 'Livelier group ride, expect tempo and above.' }
   ];
 
-  const SUGGESTIONS = {
-    build:   { Mon:'Sweet spot 2x15 &mdash; build aerobic base',   Wed:'Threshold 2x10 &mdash; push FTP ceiling',      Sat:'Endurance 60 &mdash; steady aerobic work' },
-    sharpen: { Mon:'Threshold 3x8 &mdash; sharpen race pace',      Wed:'VO2 5x3 &mdash; top-end sharpener',            Sat:'Sweet spot 3x10 &mdash; hold fitness' },
-    taper:   { Mon:'Recovery 45 &mdash; keep legs fresh',          Wed:'Easy endurance 60 &mdash; stay loose',         Sat:'Short openers &mdash; 30 min easy + 3x1 min' }
+  var SUGGESTIONS = {
+    build:   { Mon: 'Sweet spot 2×15 — build aerobic base',   Wed: 'Threshold 2×10 — push FTP ceiling',    Sat: 'Endurance 60 — steady aerobic work' },
+    sharpen: { Mon: 'Threshold 3×8 — sharpen race pace',      Wed: 'VO2 5×3 — top-end sharpener',          Sat: 'Sweet spot 3×10 — hold fitness' },
+    taper:   { Mon: 'Recovery 45 — keep legs fresh',               Wed: 'Easy endurance 60 — stay loose',            Sat: 'Short openers — 30 min easy + 3×1 min' }
   };
+
+  function getDaysLeft() {
+    var val = el('eventDate').value || '2026-06-28';
+    var target = new Date(val); target.setHours(0, 0, 0, 0);
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    return Math.max(0, Math.ceil((target - now) / 86400000));
+  }
 
   function getPhase(daysLeft) {
     if (daysLeft > 14) return 'build';
@@ -258,51 +263,130 @@
   }
 
   function renderCountdown() {
-    const val = $('eventDate').value || '2026-06-28';
-    const target = new Date(val); target.setHours(0,0,0,0);
-    const now = new Date(); now.setHours(0,0,0,0);
-    const daysLeft = Math.max(0, Math.ceil((target - now) / 86400000));
-    const weeks  = Math.floor(daysLeft / 7);
-    const remDays = daysLeft % 7;
-    const active = weeks * 5 + Math.min(remDays, 5);
-    const turbos = weeks * 3 + Math.min(remDays, 3);
-    $('countdownInner').innerHTML = [
-      [daysLeft, 'Days to go'],
-      [weeks,    'Full weeks'],
-      [active,   'Active days'],
-      [turbos,   'Turbo sessions']
-    ].map(([n,l]) => '<div class="countNum"><span>' + n + '</span><small>' + l + '</small></div>').join('');
-    const phase = getPhase(daysLeft);
-    const msgs = {
+    var daysLeft = getDaysLeft();
+    var weeks    = Math.floor(daysLeft / 7);
+    var remDays  = daysLeft % 7;
+    var active   = weeks * 5 + Math.min(remDays, 5);
+    var turbos   = weeks * 3 + Math.min(remDays, 3);
+    el('countdownInner').innerHTML = [
+      [daysLeft, 'Days to go'], [weeks, 'Full weeks'],
+      [active, 'Active days'], [turbos, 'Turbo sessions']
+    ].map(function (x) {
+      return '<div class="countNum"><span>' + x[0] + '</span><small>' + x[1] + '</small></div>';
+    }).join('');
+    var phase = getPhase(daysLeft);
+    var msgs = {
       build:   '&#x1F7E2; <strong>Build phase</strong> &mdash; focus on aerobic base, sweet spot and threshold. Tuesday long rides are your most important sessions.',
       sharpen: '&#x1F7E1; <strong>Sharpen phase</strong> &mdash; two weeks to go. Reduce volume slightly, keep intensity. Threshold and VO2 on the turbo.',
-      taper:   '&#x1F534; <strong>Taper phase</strong> &mdash; final week. Go easy. Short openers only. Trust the training you&rsquo;ve done.'
+      taper:   '&#x1F534; <strong>Taper phase</strong> &mdash; final week. Go easy. Short openers only. Trust the training you've done.'
     };
-    const box = $('phaseBox');
-    box.className = 'phaseBox phase-' + phase;
-    box.innerHTML = msgs[phase];
+    el('phaseBox').className = 'phaseBox phase-' + phase;
+    el('phaseBox').innerHTML = msgs[phase];
     return phase;
   }
 
+  function updateCoachFeedback() {
+    var current = parseInt(el('ftp').value || '240', 10);
+    var daysLeft = getDaysLeft();
+    var phase = getPhase(daysLeft);
+    var bubble  = el('coachBubble');
+    var details = el('coachDetails');
+    var note    = el('coachNote');
+
+    if (!state.saved.length) {
+      bubble.textContent = "Record a workout and I'll give you personalised feedback on how it fits your Nello preparation.";
+      details.className = 'coachDetails';
+      note.className = 'coachNote';
+      el('ftpSuggestion').textContent = current + ' W';
+      return;
+    }
+
+    var latest  = state.saved[0];
+    var workout = latest.workout;
+    var suggested = current;
+    var ftpNote, coachMsg, nextRec;
+
+    if (workout === 'Threshold' || workout === 'VO2 max') {
+      suggested = current + 2;
+      ftpNote = "That was a hard effort — I've nudged your suggested FTP up by 2 W as a conservative signal. A few more sessions like that before we commit to a bigger jump.";
+    } else if (workout === 'Recovery') {
+      ftpNote = "Recovery sessions don't move FTP — that's by design. These rides are doing important work even if it doesn't feel like it.";
+    } else if (workout === 'Group ride') {
+      ftpNote = "Group rides are hard to quantify for FTP because the effort varies so much. Holding steady for now — a structured turbo session will give us better evidence.";
+    } else {
+      ftpNote = "Steady endurance work supports your FTP base but doesn't push it higher on its own. Keep stacking these and pair them with the harder turbo sessions.";
+    }
+
+    if (phase === 'build') {
+      if (workout === 'Threshold')  coachMsg = "Good work on the threshold session — this is exactly what we need in the build phase. You're developing the engine that will carry you through the Nello. Make sure you're recovering properly before Tuesday's group ride.";
+      else if (workout === 'VO2 max')  coachMsg = "VO2 work this early in the block is brave — it'll sharpen you up, but keep an eye on fatigue. If Tuesday's group ride feels sluggish, dial back Wednesday's turbo.";
+      else if (workout === 'Sweet spot') coachMsg = "Sweet spot is the bread and butter of this phase. You're building real sustainable power. Do this consistently over the next two weeks and you'll arrive at the Nello in great shape.";
+      else if (workout === 'Recovery')   coachMsg = "Smart choice taking a recovery session. Rest is where the adaptation happens — don't feel guilty about easy days. Come back fresh for the next structured session.";
+      else if (workout === 'Group ride') coachMsg = "The group ride is your most important session of the week. Make sure you're pushing on the harder efforts rather than just sitting in — you want to arrive at the Nello ready to race, not just ride.";
+      else coachMsg = "Solid endurance work — keep building the aerobic base. Tuesday's group ride should be your main focus this week.";
+      nextRec = 'Next turbo: Sweet spot 2×15 or Threshold 2×10';
+    } else if (phase === 'sharpen') {
+      if (workout === 'Threshold')   coachMsg = "Excellent — threshold work in the sharpen phase is perfect timing. You're honing your race pace. Keep the volume manageable and make sure the quality is there.";
+      else if (workout === 'VO2 max') coachMsg = "Good sharpener. Two weeks out this is exactly right — short, sharp, and fast. Don't overdo the volume; the goal now is to feel fast, not just fit.";
+      else if (workout === 'Sweet spot') coachMsg = "Sweet spot is fine here but we're shifting gears now. Your next turbo should step up to threshold or VO2 work to get you feeling sharp for race day.";
+      else if (workout === 'Recovery')   coachMsg = "Good instinct to recover — two weeks out you need to feel fresh as well as fit. Trust the build you've done and come back firing for the next quality session.";
+      else if (workout === 'Group ride') coachMsg = "The group ride matters a lot right now — two weeks out this is close to race specificity. Push hard on the surges and practise sitting in a fast-moving group.";
+      else coachMsg = "We're in the sharpen phase now — start nudging the intensity up on turbo days. Tuesday's long ride remains your anchor session.";
+      nextRec = 'Next turbo: Threshold 3×8 or VO2 5×3';
+    } else {
+      if (workout === 'Recovery')   coachMsg = "Perfect. Final week is all about keeping the legs ticking over without digging a hole. You've done the work — trust it.";
+      else if (workout === 'Threshold') coachMsg = "That's your last hard effort before race day — well done. From here, just easy spins and short openers. No more digging deep until the start line.";
+      else coachMsg = "We're in the taper now. Keep things light and easy. A few short openers on Saturday will have you feeling sharp on race day. Don't be tempted to do more — it won't help.";
+      nextRec = 'Keep it easy: short openers only until race day';
+    }
+
+    bubble.textContent = coachMsg;
+    details.className = 'coachDetails visible';
+    note.className = 'coachNote visible';
+    note.textContent = ftpNote;
+    el('ftpSuggestion').textContent = suggested + ' W';
+    el('sessionMatch').textContent  = workout;
+    el('ftpSource').textContent     = state.saved.length > 1 ? 'Latest of ' + state.saved.length + ' recorded sessions' : 'Latest recorded session';
+    el('nextAction').textContent    = nextRec;
+  }
+
+  function renderLog() {
+    var list = el('logList'), note = el('logNote'), btn = el('clearLog');
+    if (!state.saved.length) {
+      list.innerHTML = '<div class="logItem"><strong>No rides recorded yet</strong><div class="logMeta">Choose a FIT file and record a workout to start your log.</div></div>';
+      note.textContent = 'Recorded rides are saved locally and persist between visits.';
+      btn.style.display = 'none';
+    } else {
+      note.textContent = state.saved.length + ' recorded ride' + (state.saved.length === 1 ? '' : 's') + ' saved locally.';
+      btn.style.display = 'inline-block';
+      list.innerHTML = state.saved.map(function (item) {
+        return '<div class="logItem"><strong>' + item.workout + '</strong>' +
+          '<div class="logMeta">' + item.date + ' · FTP ' + item.ftp + ' W</div>' +
+          '<div class="logMeta">File: ' + item.file + '</div></div>';
+      }).join('');
+    }
+    updateCoachFeedback();
+  }
+
   function buildWeek() {
-    const style = $('planStyle').value;
-    const phase = renderCountdown();
-    const s = SUGGESTIONS[phase];
-    const mon = style === 'Conservative' ? 1.0  : 1.25;
-    const tue = style === 'Conservative' ? 2.5  : 3.0;
-    const wed = style === 'Conservative' ? 1.0  : 1.25;
-    const thu = style === 'Conservative' ? 1.25 : 1.5;
-    const sat = style === 'Conservative' ? 1.0  : 1.25;
-    const plan = [
-      {day:'Mon', hrs:mon, type:'turbo', label:'Turbo',      desc:'Structured indoor session', sug:s.Mon},
-      {day:'Tue', hrs:tue, type:'group', label:'Long ride',  desc:'Main Nello prep ride',       sug:null},
-      {day:'Wed', hrs:wed, type:'turbo', label:'Turbo',      desc:'Structured indoor session', sug:s.Wed},
-      {day:'Thu', hrs:thu, type:'group', label:'Group ride', desc:'Steady endurance',           sug:null},
-      {day:'Fri', hrs:0,   type:'rest',  label:'Rest',       desc:'Recovery day',               sug:null},
-      {day:'Sat', hrs:sat, type:'turbo', label:'Turbo',      desc:'Structured indoor session', sug:s.Sat},
-      {day:'Sun', hrs:0,   type:'rest',  label:'Rest',       desc:'Recovery day',               sug:null}
+    var style = el('planStyle').value;
+    var phase = renderCountdown();
+    var s = SUGGESTIONS[phase];
+    var mon = style === 'Conservative' ? 1.0  : 1.25;
+    var tue = style === 'Conservative' ? 2.5  : 3.0;
+    var wed = style === 'Conservative' ? 1.0  : 1.25;
+    var thu = style === 'Conservative' ? 1.25 : 1.5;
+    var sat = style === 'Conservative' ? 1.0  : 1.25;
+    var plan = [
+      { day: 'Mon', hrs: mon, type: 'turbo', label: 'Turbo',      desc: 'Structured indoor session', sug: s.Mon },
+      { day: 'Tue', hrs: tue, type: 'group', label: 'Long ride',  desc: 'Main Nello prep ride',       sug: null  },
+      { day: 'Wed', hrs: wed, type: 'turbo', label: 'Turbo',      desc: 'Structured indoor session', sug: s.Wed },
+      { day: 'Thu', hrs: thu, type: 'group', label: 'Group ride', desc: 'Steady endurance',           sug: null  },
+      { day: 'Fri', hrs: 0,   type: 'rest',  label: 'Rest',       desc: 'Recovery day',               sug: null  },
+      { day: 'Sat', hrs: sat, type: 'turbo', label: 'Turbo',      desc: 'Structured indoor session', sug: s.Sat },
+      { day: 'Sun', hrs: 0,   type: 'rest',  label: 'Rest',       desc: 'Recovery day',               sug: null  }
     ];
-    $('weekGrid').innerHTML = plan.map(function(d) {
+    el('weekGrid').innerHTML = plan.map(function (d) {
       return '<div class="dayCard ' + d.type + '">' +
         '<strong>' + d.day + '</strong>' +
         '<div class="dtype">' + d.label + '</div>' +
@@ -311,135 +395,100 @@
         (d.sug ? '<div class="suggestion">' + d.sug + '</div>' : '') +
         '</div>';
     }).join('');
-    const total = (mon + tue + wed + thu + sat).toFixed(1);
-    $('planNote').textContent = total + ' h across 5 active days (' + style + '). Mon/Wed/Sat = turbo with phase-based suggestions. Tue = long group ride. Thu = group ride. Fri & Sun = rest.';
-  }
-
-  function updateCoachFeedback() {
-    const current = parseInt($('ftp').value || '240', 10);
-    if (!state.saved.length) {
-      $('ftpSuggestion').textContent = current + ' W';
-      $('ftpHint').textContent = 'No workout recorded yet &mdash; holding your current FTP.';
-      return;
-    }
-    const latest = state.saved[0];
-    let suggested = current, hint;
-    if (latest.workout === 'Threshold' || latest.workout === 'VO2 max') {
-      suggested = current + 2; hint = 'Conservative +2 W increase after a hard session.';
-    } else if (latest.workout === 'Recovery') {
-      hint = 'Recovery rides do not change FTP in this model.';
-    } else if (latest.workout === 'Group ride') {
-      hint = 'Group ride evidence is variable &mdash; holding FTP until clearer data appears.';
-    } else {
-      hint = 'Steady sessions support holding FTP unless harder evidence appears.';
-    }
-    $('ftpSuggestion').textContent = suggested + ' W';
-    $('ftpHint').textContent = hint;
-  }
-
-  function renderLog() {
-    const list = $('logList'), note = $('logNote'), btn = $('clearLog');
-    if (!state.saved.length) {
-      list.innerHTML = '<div class="logItem"><strong>No rides recorded yet</strong><div class="logMeta">Choose a FIT file and record a workout to start your log.</div></div>';
-      note.textContent = 'Recorded rides are saved locally and persist between visits.';
-      btn.style.display = 'none';
-    } else {
-      note.textContent = state.saved.length + ' recorded ride' + (state.saved.length === 1 ? '' : 's') + ' saved locally.';
-      btn.style.display = 'inline-block';
-      list.innerHTML = state.saved.map(function(item) {
-        return '<div class="logItem"><strong>' + item.workout + '</strong>' +
-          '<div class="logMeta">' + item.date + ' &middot; FTP ' + item.ftp + ' W</div>' +
-          '<div class="logMeta">File: ' + item.file + '</div></div>';
-      }).join('');
-    }
-    updateCoachFeedback();
+    var total = (mon + tue + wed + thu + sat).toFixed(1);
+    el('planNote').textContent = total + ' h across 5 active days (' + style + '). Mon/Wed/Sat = turbo with phase-based suggestions. Tue = long group ride. Thu = group ride. Fri & Sun = rest.';
   }
 
   function renderLibrary() {
-    const q = ($('libSearch').value || '').toLowerCase();
-    const type = $('libType').value || 'all';
-    const filtered = library.filter(function(item) {
+    var q    = (el('libSearch').value || '').toLowerCase();
+    var type = el('libType').value || 'all';
+    var filtered = library.filter(function (item) {
       return (type === 'all' || item.type === type) &&
-             (!q || item.name.toLowerCase().includes(q) || item.notes.toLowerCase().includes(q));
+             (!q || item.name.toLowerCase().indexOf(q) !== -1 || item.notes.toLowerCase().indexOf(q) !== -1);
     });
-    const list = $('libList'), note = $('libNote');
+    var list = el('libList'), note = el('libNote');
     if (!filtered.length) {
       list.innerHTML = '<div class="libItem"><strong>No workouts found</strong><div class="libMeta">Try a broader search.</div></div>';
       note.textContent = 'No matches. Try a different filter.';
       return;
     }
-    note.textContent = filtered.length + ' workout' + (filtered.length === 1 ? '' : 's') + ' &mdash; click to copy name to clipboard.';
-    list.innerHTML = filtered.map(function(item) {
+    note.textContent = filtered.length + ' workout' + (filtered.length === 1 ? '' : 's') + ' — click to copy name to clipboard.';
+    list.innerHTML = filtered.map(function (item) {
       return '<button type="button" class="libItem" data-name="' + item.name + '">' +
         '<strong>' + item.name + '</strong>' +
         '<div class="libMeta">' + item.type + '</div>' +
         '<div class="libMeta">' + item.notes + '</div></button>';
     }).join('');
-    list.querySelectorAll('button[data-name]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const name = btn.getAttribute('data-name');
-        if (navigator.clipboard) navigator.clipboard.writeText(name).catch(function(){});
-        note.textContent = 'Copied "' + name + '" &mdash; paste it into MyWhoosh.';
+    list.querySelectorAll('button[data-name]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-name');
+        if (navigator.clipboard) navigator.clipboard.writeText(name).catch(function () {});
+        note.textContent = 'Copied “' + name + '” — paste it into MyWhoosh.';
       });
     });
   }
 
   function guessWorkout(name) {
-    const n = (name || '').toLowerCase();
-    if (n.includes('recovery'))  return 'Recovery';
-    if (n.includes('tempo'))     return 'Tempo';
-    if (n.includes('sweet'))     return 'Sweet spot';
-    if (n.includes('threshold')) return 'Threshold';
-    if (n.includes('vo2'))       return 'VO2 max';
-    if (n.includes('group'))     return 'Group ride';
+    var n = (name || '').toLowerCase();
+    if (n.indexOf('recovery')  !== -1) return 'Recovery';
+    if (n.indexOf('tempo')     !== -1) return 'Tempo';
+    if (n.indexOf('sweet')     !== -1) return 'Sweet spot';
+    if (n.indexOf('threshold') !== -1) return 'Threshold';
+    if (n.indexOf('vo2')       !== -1) return 'VO2 max';
+    if (n.indexOf('group')     !== -1) return 'Group ride';
     return 'Endurance';
   }
 
-  $('fitFile').addEventListener('change', function(e) {
-    const file = e.target.files && e.target.files[0];
-    if (!file) { state.file = null; $('chosenFile').textContent = 'No file detected.'; return; }
+  el('fitFile').addEventListener('change', function (e) {
+    var file = e.target.files && e.target.files[0];
+    if (!file) {
+      state.file = null;
+      el('chosenFile').textContent = 'No file detected.';
+      el('statusBox').textContent  = 'No file was detected after the chooser closed.';
+      return;
+    }
     state.file = file;
-    const guess = guessWorkout(file.name);
-    $('chosenFile').textContent = file.name + ' &middot; ' + (file.size / 1024).toFixed(1) + ' KB';
-    $('guess').value = guess;
-    $('confirmWorkout').value = guess;
-    $('statusBox').textContent = 'File accepted. Confirm the workout type and press Record.';
-    $('rideEvidence').textContent = 'File detected';
-    $('sessionMatch').textContent = 'Ready for confirmation';
-    $('nextAction').textContent = 'Press Record confirmed workout.';
-    $('recordResult').innerHTML = '';
+    var guess = guessWorkout(file.name);
+    el('chosenFile').textContent    = file.name + ' · ' + (file.size / 1024).toFixed(1) + ' KB';
+    el('guess').value               = guess;
+    el('confirmWorkout').value      = guess;
+    el('statusBox').textContent     = 'File accepted. Confirm the workout type and press Record.';
+    el('recordResult').innerHTML    = '';
   });
 
-  $('recordBtn').addEventListener('click', function() {
-    if (!state.file) { $('statusBox').textContent = 'Choose a FIT file first.'; return; }
-    const workout = $('confirmWorkout').value;
-    const ftp = $('ftp').value || '240';
-    const stamp = new Date().toLocaleString();
+  el('recordBtn').addEventListener('click', function () {
+    if (!state.file) {
+      el('statusBox').textContent = 'Choose a FIT file first.';
+      return;
+    }
+    var workout = el('confirmWorkout').value;
+    var ftp     = el('ftp').value || '240';
+    var stamp   = new Date().toLocaleString();
     state.saved.unshift({ workout: workout, ftp: ftp, file: state.file.name, date: stamp });
     saveToDisk(state.saved);
-    $('recordResult').innerHTML = '<div class="result">Recorded: <strong>' + workout +
+    el('recordResult').innerHTML = '<div class="result">Recorded: <strong>' + workout +
       '</strong> from ' + state.file.name + ' at FTP ' + ftp + ' W. Saved at ' + stamp + '.</div>';
-    $('statusBox').textContent = 'Workout recorded and saved locally.';
+    el('statusBox').textContent = 'Workout recorded and saved locally.';
     renderLog();
-    updateCoachFeedback();
   });
 
-  $('clearLog').addEventListener('click', function() {
+  el('clearLog').addEventListener('click', function () {
     if (!confirm('Clear all saved rides? This cannot be undone.')) return;
     state.saved = [];
     saveToDisk([]);
     renderLog();
   });
 
-  $('eventDate').addEventListener('change', buildWeek);
-  $('hours').addEventListener('input', buildWeek);
-  $('planStyle').addEventListener('change', buildWeek);
-  $('libSearch').addEventListener('input', renderLibrary);
-  $('libType').addEventListener('change', renderLibrary);
+  el('eventDate').addEventListener('change', buildWeek);
+  el('hours').addEventListener('input', buildWeek);
+  el('planStyle').addEventListener('change', buildWeek);
+  el('libSearch').addEventListener('input', renderLibrary);
+  el('libType').addEventListener('change', renderLibrary);
 
   buildWeek();
   renderLog();
   renderLibrary();
+}());
 </script>
 </body>
 </html>
