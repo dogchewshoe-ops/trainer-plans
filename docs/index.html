@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V22d</title>
+  <title>Nello Training Planner V22e</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="badge">V22d · 2 Jun 2026 · Correct weekly structure</div>
+    <div class="badge">V22e · 2 Jun 2026 · Correct weekly structure</div>
     <h1>Nello Training Planner</h1>
     <p>This clean build keeps the working browser workflow, weekly planner, and training log, and now adds a conservative FTP suggestion based on the latest recorded workout.</p>
 
@@ -148,7 +148,7 @@
             </select>
           </div>
         </div>
-        <div class="notice" id="planNote">Fixed rides stay on Tuesday and Thursday, with Tuesday treated as the longer group ride.</div>
+        <div class="notice" id="planNote">Mon/Wed/Sat = turbo. Tue = long group ride. Thu = group ride. Fri &amp; Sun = rest.</div>
         <div class="weekGrid" id="weekGrid"></div>
       
       <section class="card logSection">
@@ -290,25 +290,30 @@
     function buildWeek(){
       const hours = parseFloat($('hours').value || '7.5');
       const style = $('planStyle').value;
-      const longTue = style === 'Conservative' ? 1.75 : 2.0;
-      const thuGroup = style === 'Conservative' ? 1.25 : 1.5;
-      const satLong = style === 'Conservative' ? Math.max(2.5, Math.min(3.5, hours * 0.35)) : Math.max(2.75, Math.min(4.0, hours * 0.38));
-      let remaining = Math.max(0, hours - longTue - thuGroup - satLong);
-      const mon = Math.min(1.0, remaining > 0 ? 0.75 : 0); remaining = Math.max(0, remaining - mon);
-      const wed = Math.min(0.75, remaining > 0 ? 0.5 : 0); remaining = Math.max(0, remaining - wed);
-      const fri = Math.min(0.75, remaining > 0 ? 0.5 : 0); remaining = Math.max(0, remaining - fri);
-      const sun = Math.max(0, remaining);
+      // Fixed day types — Mon/Wed/Sat = turbo, Tue = long group ride, Thu = group ride
+      // Fri and Sun = rest always
+      // Durations scale slightly with style; total active hours shown for reference
+      const mon = style === 'Conservative' ? 1.0 : 1.25;
+      const tue = style === 'Conservative' ? 2.5  : 3.0;
+      const wed = style === 'Conservative' ? 1.0  : 1.25;
+      const thu = style === 'Conservative' ? 1.25 : 1.5;
+      const sat = style === 'Conservative' ? 1.0  : 1.25;
       const plan = [
-        ['Mon', mon, 'Recovery spin or easy endurance'],
-        ['Tue', longTue, 'Fixed group ride, longer aerobic/tempo day'],
-        ['Wed', wed, 'Rest or short recovery'],
-        ['Thu', thuGroup, 'Fixed group ride, steady endurance'],
-        ['Fri', fri, 'Optional easy spin or rest'],
-        ['Sat', satLong, 'Preferred long ride for Nello preparation'],
-        ['Sun', sun, sun > 0 ? 'Easy endurance or skills ride' : 'Rest']
+        ['Mon', mon,  'Turbo / MyWhoosh structured session'],
+        ['Tue', tue,  'Long outdoor group ride — main Nello preparation'],
+        ['Wed', wed,  'Turbo / MyWhoosh structured session'],
+        ['Thu', thu,  'Group ride, steady endurance'],
+        ['Fri', 0,    'Rest day'],
+        ['Sat', sat,  'Turbo / MyWhoosh structured session'],
+        ['Sun', 0,    'Rest day']
       ];
-      $('weekGrid').innerHTML = plan.map(([day,hrs,text]) => `<div class="dayCard"><strong>${day}</strong><span>${hrs.toFixed(1)} h</span><span>${text}</span></div>`).join('');
-      $('planNote').textContent = `Weekly planner built for ${hours.toFixed(1)} h with a ${style.toLowerCase()} approach. Tuesday and Thursday stay fixed, and Saturday remains the main long ride.`;
+      $('weekGrid').innerHTML = plan.map(([day,hrs,text]) =>
+        `<div class="dayCard"><strong>${day}</strong><span>${hrs > 0 ? hrs.toFixed(1) + ' h' : 'Rest'}</span><span>${text}</span></div>`
+      ).join('');
+      const total = (mon + tue + wed + thu + sat).toFixed(1);
+      $('planNote').textContent =
+        `Weekly plan: ${total} h across 5 active days (${style} approach). ` +
+        'Mon/Wed/Sat = turbo. Tue = long group ride. Thu = group ride. Fri & Sun = rest.';
     }
 
     $('recordBtn').addEventListener('click', () => {
