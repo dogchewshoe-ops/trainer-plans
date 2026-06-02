@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V24b</title>
+  <title>Nello Training Planner V25</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -88,7 +88,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">V24b &middot; 3 Jun 2026 &middot; Coach panel fix</div>
+  <div class="badge">V25 &middot; 3 Jun 2026 &middot; Robust error handling</div>
   <h1>Nello Training Planner</h1>
   <p class="sub">Browser-first training planner. Your training log is saved locally and persists between visits.</p>
 
@@ -250,8 +250,11 @@
   };
 
   function getDaysLeft() {
-    var val = el('eventDate').value || '2026-06-28';
-    var target = new Date(val); target.setHours(0, 0, 0, 0);
+    var dateEl = el('eventDate');
+    var val = (dateEl && dateEl.value) ? dateEl.value : '2026-06-28';
+    var target = new Date(val);
+    if (isNaN(target.getTime())) target = new Date('2026-06-28');
+    target.setHours(0, 0, 0, 0);
     var now = new Date(); now.setHours(0, 0, 0, 0);
     return Math.max(0, Math.ceil((target - now) / 86400000));
   }
@@ -485,9 +488,9 @@
   el('libSearch').addEventListener('input', renderLibrary);
   el('libType').addEventListener('change', renderLibrary);
 
-  buildWeek();
-  renderLog();
-  renderLibrary();
+  try { buildWeek(); } catch(e) { console.error('buildWeek error:', e); }
+  try { renderLog(); } catch(e) { console.error('renderLog error:', e); }
+  try { renderLibrary(); } catch(e) { console.error('renderLibrary error:', e); }
 }());
 </script>
 </body>
