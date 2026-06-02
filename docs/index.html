@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V24</title>
+  <title>Nello Training Planner V24a</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -97,7 +97,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">V24 &middot; 2 Jun 2026 &middot; Coaching feedback panel</div>
+  <div class="badge">V24a &middot; 3 Jun 2026 &middot; Coaching panel fix</div>
   <h1>Nello Training Planner</h1>
   <p class="sub">Browser-first training planner. Your training log is saved locally and persists between visits.</p>
 
@@ -420,10 +420,8 @@
     $('recordResult').innerHTML = '<div class="result">Recorded: <strong>' + workout +
       '</strong> from ' + state.file.name + ' at FTP ' + ftp + ' W. Saved at ' + stamp + '.</div>';
     $('statusBox').textContent = 'Workout recorded and saved locally.';
-    $('rideEvidence').textContent = 'Recorded from FIT file';
-    $('sessionMatch').textContent = workout;
-    $('nextAction').textContent = 'Recording complete.';
     renderLog();
+    updateCoachFeedback();
   });
 
   $('clearLog').addEventListener('click', function() {
