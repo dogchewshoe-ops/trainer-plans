@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V15e</title>
+  <title>Nello Training Planner V16</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,12 +19,12 @@
     .notice{margin-top:1rem;padding:1rem;border-radius:16px;background:var(--primarySoft);color:var(--primary);overflow-wrap:anywhere} .notice.warn{background:var(--warnSoft);color:var(--warn)} .notice.ok{background:var(--successSoft);color:var(--success)}
     .filename{padding:.85rem .95rem;border:1px dashed var(--border);border-radius:14px;background:var(--surface2);min-height:52px;display:flex;align-items:center;min-width:0;overflow-wrap:anywhere;word-break:break-word}.kv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.75rem;padding:.55rem 0;border-bottom:1px solid var(--divider);align-items:start}.kv:last-child{border-bottom:none}.kv span,.kv strong{min-width:0;overflow-wrap:anywhere;word-break:break-word}
     .sectionTitle{font-size:1.2rem;margin-bottom:.8rem}.list{display:grid;gap:.75rem;min-width:0}.sessionTop{grid-template-columns:minmax(0,1fr) auto;align-items:start}.split,.readRows{display:grid;gap:1rem;min-width:0}.analysisCard{min-width:0}.analysisCard .metricGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.analysisCard .tile{min-height:142px;overflow:hidden}.tile strong,.journal strong{display:block;margin:.2rem 0 .3rem;overflow-wrap:anywhere;word-break:break-word}.tile div,.journal div,.session div{overflow-wrap:anywhere;word-break:break-word}
-    .footer{position:fixed;left:50%;transform:translateX(-50%);bottom:.85rem;width:calc(100% - 1rem);max-width:860px;padding:.5rem;display:grid;grid-template-columns:minmax(260px,1.1fr) minmax(220px,.9fr);gap:.5rem;background:color-mix(in srgb,var(--surface) 92%, transparent);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)} .footer .btn{min-height:52px}.footer-note{display:flex;align-items:center;justify-content:center;padding:.2rem .5rem;font-size:12px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
+     .footer .btn{min-height:52px}.footer-note{display:flex;align-items:center;justify-content:center;padding:.2rem .5rem;font-size:12px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
     .gridRead{display:grid;gap:1rem;min-width:0}
     .readRows{grid-template-columns:1fr}
     .readRows .tile{min-width:0}
     .readRows .kv{grid-template-columns:minmax(120px,220px) minmax(0,1fr)}
-    @media (max-width:759px){.footer{grid-template-columns:1fr}.footer-note{order:2}.analysisCard .metricGrid{grid-template-columns:1fr}.hero h2{max-width:none}}
+    @media (max-width:759px){.footer-note{order:2}.analysisCard .metricGrid{grid-template-columns:1fr}.hero h2{max-width:none}}
     @media (min-width:760px){.heroGrid{grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
     @media (min-width:1180px){.confirmGrid{grid-template-columns:minmax(360px,1.06fr) minmax(520px,.94fr)}.gridRead{grid-template-columns:minmax(0,1fr)}}
     @media (min-width:1080px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
@@ -37,18 +37,18 @@
     <header class="top">
       <div class="brand">
         <div class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="17" r="3.2"></circle><circle cx="17.2" cy="17" r="3.2"></circle><path d="M10.5 17h3.5l3.2-7.5h-4.9l-1.8-2.7H7.7"></path></svg></div>
-        <div style="min-width:0"><div class="stamp">V15e · 2 Jun 2026 · Record button rebuilt</div><h1 class="title">Nello Training Planner</h1></div>
+        <div style="min-width:0"><div class="stamp">V16 · 2 Jun 2026 · Inline record flow</div><h1 class="title">Nello Training Planner</h1></div>
       </div>
       <button class="theme" type="button" data-theme-toggle aria-label="Switch theme">◐</button>
     </header>
 
     <section class="hero">
-      <div class="chips"><span class="chip primary" id="phaseChip">Build</span><span class="chip" id="daysChip">29 days to Nello</span><span class="chip">Record button rebuilt</span><span class="chip">Standalone app with safer button handling</span></div>
+      <div class="chips"><span class="chip primary" id="phaseChip">Build</span><span class="chip" id="daysChip">29 days to Nello</span><span class="chip">Inline record flow</span><span class="chip">Standalone app with inline recording</span></div>
       <div class="heroGrid" style="margin-top:1rem;">
         <div style="min-width:0">
-          <div class="tiny">This build is intended for normal browsers and rebuilds the record button so it stays clickable above the page layout. Recording writes a confirmation straight into the page and should no longer be blocked by the sticky footer layout.</div>
+          <div class="tiny">This build is intended for normal browsers and removes the sticky footer entirely. Recording now happens from a normal in-page button inside the confirmation section, which is simpler and more reliable.</div>
           <h2>Read the file without breaking the desktop layout</h2>
-          <p class="muted">Version 15e is a browser-first standalone build with a rebuilt record control and on-page result box.</p>
+          <p class="muted">Version 16 is a browser-first standalone build with a normal inline record button and result box.</p>
           <div class="actions" style="margin-top:1rem;"><input id="fitFileVisible" class="btn" type="file" accept=".fit,.FIT" style="max-width:360px;padding:.7rem .8rem;background:var(--surface2);" /><button class="btn" type="button" id="readBtn" disabled>2. File accepted automatically</button></div>
           <div class="notice" id="heroNotice">Status: set FTP to match MyWhoosh, then choose a FIT file. The app now accepts it automatically.</div>
         </div>
@@ -160,7 +160,7 @@
   </main>
 
   <div class="footer">
-    <button class="btn primary" type="button" id="recordStickyBtn" disabled onclick="recordAgainstPlan(); return false;">3. Record confirmed workout</button>
+    <button class="btn primary" type="button" 3. Record confirmed workout</button>
     <div class="footer-note" id="stickyNote">Choose a FIT file in a normal browser, then confirm the workout here before recording.</div>
   </div>
 
@@ -225,14 +225,14 @@
     }
 
     function recordAgainstPlan(){ if(!state.parsed){ setNotice('warn','Read the selected file before recording it.'); return; } syncFtp(); const planned = confirmedSession(); const guessed = $('detectedWorkout').value; const status = guessed === planned.title ? 'Imported ride aligns with the confirmed workout' : `Imported file was confirmed manually as ${planned.title}`; const decision = planned.type === 'Quality' ? 'Keep the next hard session only if legs feel normal; otherwise shorten the following endurance ride.' : 'Leave the next key workout in place and use this ride as supporting volume.'; const ftpNote = state.suggested === state.ftp ? `No FTP change. Baseline remains ${state.ftp} W.` : `Suggested FTP changed from ${state.ftp} W to ${state.suggested} W.`; if(state.usage[planned.title] !== undefined) state.usage[planned.title] += 1; state.journal.push({date:new Date().toISOString().slice(0,10),planned:planned.label,status,decision,ftp:ftpNote}); renderJournal(); refreshRotation(); setNotice('ok','Ride recorded to the training log using your confirmed workout and FTP baseline.'); setHero('Status: ride recorded to the training log with the confirmed workout and current FTP baseline.','ok'); $('stickyNote').textContent='Ride recorded. The training log now reflects the confirmed session rather than a random default entry.'; }
-    $('chooseBtn').addEventListener('click',()=>{ const input=$('fitFile'); input.value=''; state.selectedFile=null; state.parsed=null; $('recordStickyBtn').disabled=true; $('stickyNote').textContent='Choose a FIT file in a normal browser, then confirm the workout here before recording.'; setText('selectionState','Opening'); $('filenameBox').textContent='No file detected yet.'; $('detectedWorkout').value='No guess yet'; setNotice('', 'Waiting for file chooser result.'); setHero('Status: file chooser opened. Select a FIT file and click Open.'); input.click(); });
+    $('chooseBtn').addEventListener('click',()=>{ const input=$('fitFile'); input.value=''; state.selectedFile=null; state.parsed=null; const inlineBtn=$('recordInlineBtn'); if(inlineBtn) inlineBtn.disabled=true; $('stickyNote').textContent='Choose a FIT file in a normal browser, then confirm the workout here before recording.'; setText('selectionState','Opening'); $('filenameBox').textContent='No file detected yet.'; $('detectedWorkout').value='No guess yet'; setNotice('', 'Waiting for file chooser result.'); setHero('Status: file chooser opened. Select a FIT file and click Open.'); input.click(); });
     $('fitFile').addEventListener('click',e=>{ e.target.value=''; });
     $('fitFile').addEventListener('change',e=>{ const file=e.target.files && e.target.files[0]; if(!file){ setText('selectionState','No file'); setNotice('warn','No file was detected after the chooser closed.'); setHero('Status: chooser closed, but no file was detected.','warn'); $('filenameBox').textContent='No file detected yet.'; return; } state.selectedFile=file; $('filenameBox').textContent=`${file.name} · ${(file.size/1024).toFixed(1)} KB`; setText('selectionState','Detected'); setNotice('ok',`File detected: ${file.name}. Now press “Read selected file”.`); setHero(`Status: file detected successfully: ${file.name}`,'ok'); });
     ['athleteName','ageInput','genderInput','weightInput','maxHrInput','thrHrInput','experienceInput','goalInput','hoursInput','eventNameInput','eventDateInput','restDaysInput','groupDaysInput','longRideInput','intensityInput'].forEach(id=> $(id).addEventListener('input', ()=>{ if(id==='eventDateInput'){ state.eventDate = new Date($('eventDateInput').value + 'T08:00:00'); } renderTop(); renderWeeks(); refreshRotation(); })); $('goalInput').addEventListener('change', ()=>{ renderTop(); renderWeeks(); refreshRotation(); }); $('genderInput').addEventListener('change', ()=> renderTop()); $('experienceInput').addEventListener('change', ()=> renderTop()); $('longRideInput').addEventListener('change', ()=>{ renderTop(); renderWeeks(); }); $('intensityInput').addEventListener('change', ()=>{ renderTop(); renderWeeks(); }); $('ftpInput').addEventListener('input', syncFtp); $('readBtn').addEventListener('click', readSelected); $('recordStickyBtn').addEventListener('click', recordAgainstPlan); $('confirmWorkout').addEventListener('change',()=>{ if(state.parsed) analyseImportedRide(state.parsed, confirmedSession()); });
     (function(){ const btn=document.querySelector('[data-theme-toggle]'); const root=document.documentElement; let mode=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; root.setAttribute('data-theme',mode); btn.addEventListener('click',()=>{ mode=mode==='dark'?'light':'dark'; root.setAttribute('data-theme',mode); }); })();
     renderTop(); renderConfirmWorkout(); renderWeeks(); renderJournal(); refreshRotation(); $('analysisNotes').innerHTML='<div class="tile"><div class="muted">This version repairs the remaining post-read compression by stacking the read-output panel sooner and widening value rows.</div></div>';
     document.addEventListener('DOMContentLoaded',()=>{
-      const btn = $('recordStickyBtn');
+      const btn = $('recordInlineBtn');
       if(btn){
         btn.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); recordAgainstPlan(); }, {capture:true});
         btn.addEventListener('pointerup',e=>{ e.preventDefault(); e.stopPropagation(); recordAgainstPlan(); }, {capture:true});
