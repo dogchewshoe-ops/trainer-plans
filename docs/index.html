@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V23</title>
+  <title>Nello Training Planner V24</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -79,6 +79,16 @@
     .logMeta{color:var(--muted);font-size:13px;line-height:1.45}
     .logClear{margin-top:12px;background:none;border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--muted);cursor:pointer;display:none}
     .logClear:hover{border-color:#c44;color:#c44}
+    /* Coach panel */
+    .coachCard { position: relative; }
+    .coachVoice { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+    .coachAvatar { font-size: 36px; flex-shrink: 0; margin-top: 2px; }
+    .coachBubble { background: var(--ok); border-radius: 0 16px 16px 16px; padding: 14px 16px; color: #2a5260; font-size: 14px; line-height: 1.6; flex: 1; border: 1px solid #b8d8e0; }
+    .coachDetails { display: grid; gap: 8px; margin-top: 4px; }
+    .coachRow { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: white; border: 1px solid var(--border); border-radius: 12px; }
+    .coachLabel { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .coachValue { font-size: 14px; font-weight: 600; color: var(--text); }
+    .ftpHint { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #f7faf4; border: 1px solid #d0e4cc; color: var(--muted); font-size: 13px; line-height: 1.5; }
     @media(max-width:900px){
       .grid,.row,.metrics,.controls,.weekGrid,.countdownInner{grid-template-columns:1fr}
       h1{font-size:28px}.libControls{grid-template-columns:1fr}
@@ -87,7 +97,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">V23 &middot; 2 Jun 2026 &middot; Countdown, smart sessions &amp; persistent log</div>
+  <div class="badge">V24 &middot; 2 Jun 2026 &middot; Coaching feedback panel</div>
   <h1>Nello Training Planner</h1>
   <p class="sub">Browser-first training planner. Your training log is saved locally and persists between visits.</p>
 
@@ -133,19 +143,21 @@
       </div>
     </section>
 
-    <section class="card">
-      <h2>Post-import analysis</h2>
-      <div class="ftpBox">
-        <strong>Suggested FTP</strong>
-        <div id="ftpSuggestion">240 W</div>
-        <div class="ftpHint" id="ftpHint">No workout recorded yet &mdash; holding your current FTP.</div>
+    <section class="card coachCard">
+      <h2>Coach feedback</h2>
+      <div class="coachVoice" id="coachVoice">
+        <div class="coachAvatar">&#127947;</div>
+        <div class="coachBubble" id="coachBubble">
+          Record a workout and I'll give you personalised feedback on how it fits your Nello preparation.
+        </div>
       </div>
-      <div class="metrics" style="margin-top:12px">
-        <div class="mini"><strong>Ride evidence</strong><span id="rideEvidence">None yet</span></div>
-        <div class="mini"><strong>Session match</strong><span id="sessionMatch">Pending</span></div>
-        <div class="mini"><strong>FTP source</strong><span id="ftpSource">Manual profile value</span></div>
-        <div class="mini"><strong>Next action</strong><span id="nextAction">Choose a FIT file first.</span></div>
+      <div class="coachDetails" id="coachDetails" style="display:none">
+        <div class="coachRow"><span class="coachLabel">Suggested FTP</span><span class="coachValue" id="ftpSuggestion">240 W</span></div>
+        <div class="coachRow"><span class="coachLabel">Session type</span><span class="coachValue" id="sessionMatch">—</span></div>
+        <div class="coachRow"><span class="coachLabel">FTP basis</span><span class="coachValue" id="ftpSource">Manual entry</span></div>
+        <div class="coachRow"><span class="coachLabel">Next recommended</span><span class="coachValue" id="nextAction">—</span></div>
       </div>
+      <div class="ftpHint" id="ftpHint" style="display:none"></div>
     </section>
   </div>
 
@@ -303,7 +315,7 @@
     $('planNote').textContent = total + ' h across 5 active days (' + style + '). Mon/Wed/Sat = turbo with phase-based suggestions. Tue = long group ride. Thu = group ride. Fri & Sun = rest.';
   }
 
-  function updateFtpSuggestion() {
+  function updateCoachFeedback() {
     const current = parseInt($('ftp').value || '240', 10);
     if (!state.saved.length) {
       $('ftpSuggestion').textContent = current + ' W';
@@ -340,7 +352,7 @@
           '<div class="logMeta">File: ' + item.file + '</div></div>';
       }).join('');
     }
-    updateFtpSuggestion();
+    updateCoachFeedback();
   }
 
   function renderLibrary() {
