@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V5.1</title>
+  <title>Nello Training Planner V5.2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,52 +44,35 @@
     .dayToggle input{position:absolute;opacity:0;pointer-events:none}
     .dayToggle span{display:flex;align-items:center;justify-content:center;padding:11px 8px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft);font-size:13px;font-weight:700;cursor:pointer;min-height:44px}
     .dayToggle input:checked + span{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-    .legendItem{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}.legendItem{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
     .dot{width:12px;height:12px;border-radius:999px;display:inline-block}
     .dot.endurance{background:var(--blue)} .dot.group{background:var(--orange)} .dot.turbo{background:var(--purple)} .dot.recovery{background:var(--green)} .dot.rest{background:var(--rose)}
     .notice{border-radius:16px;padding:14px 16px;margin-top:8px;font-size:14px;line-height:1.55}
-    .notice.teal{background:var(--primary-soft);color:var(--primary-dark);border:1px solid #b7e4dd}
-    .notice.gold{background:var(--gold-soft);color:#7a5608;border:1px solid #f0d88a}
-    .btnRow{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{border:0;border-radius:14px;padding:14px 18px;font-weight:800;cursor:pointer;min-height:46px}
-    .btn.primary{background:var(--primary);color:white}.btn.primary:hover{background:var(--primary-dark)}
-    .btn.ghost{background:white;color:var(--muted);border:1px solid var(--border)}
+    .notice.teal{background:var(--primary-soft);color:var(--primary-dark);border:1px solid #b7e4dd}.notice.gold{background:var(--gold-soft);color:#7a5608;border:1px solid #f0d88a}
+    .btnRow{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:14px 18px;font-weight:800;cursor:pointer;min-height:46px}
+    .btn.primary{background:var(--primary);color:white}.btn.primary:hover{background:var(--primary-dark)}.btn.ghost{background:white;color:var(--muted);border:1px solid var(--border)}
     .coachBubble{background:linear-gradient(135deg,#effcf7,#eef2ff);border-radius:18px;padding:16px;border:1px solid #d8e5fb;color:#24405c;line-height:1.6}
-    .coachGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    .coachMetric{padding:12px;border-radius:14px;background:white;border:1px solid var(--border)}
+    .coachGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.coachMetric{padding:12px;border-radius:14px;background:white;border:1px solid var(--border)}
     .coachMetric strong{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.coachMetric span{font-weight:700}
     .noteList{display:grid;gap:8px;margin-top:12px}.noteItem{padding:12px;border-radius:14px;background:white;border:1px solid var(--border);font-size:13px;line-height:1.5;color:#29435d}
-    .countdownInner{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
-    .countNum{background:white;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center}
-    .countNum span{display:block;font-size:32px;font-weight:800;color:var(--primary-dark)}
-    .countNum small{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-    .phaseBox{border-radius:16px;padding:14px 16px;font-size:14px;line-height:1.55}
-    .phase-build{background:var(--green-soft);border:1px solid #b7e3c5;color:#215437}
-    .phase-sharpen{background:var(--gold-soft);border:1px solid #efd57b;color:#7a5608}
-    .phase-taper{background:var(--rose-soft);border:1px solid #f2b7d3;color:#8f184f}
-    .weekGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
-    .dayCard{border:1px solid var(--border);border-radius:18px;padding:12px;background:white;min-height:300px}
+    .countdownInner{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}.countNum{background:white;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center}
+    .countNum span{display:block;font-size:32px;font-weight:800;color:var(--primary-dark)}.countNum small{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    .phaseBox{border-radius:16px;padding:14px 16px;font-size:14px;line-height:1.55}.phase-build{background:var(--green-soft);border:1px solid #b7e3c5;color:#215437}.phase-sharpen{background:var(--gold-soft);border:1px solid #efd57b;color:#7a5608}.phase-taper{background:var(--rose-soft);border:1px solid #f2b7d3;color:#8f184f}
+    .weekGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.dayCard{border:1px solid var(--border);border-radius:18px;padding:12px;background:white;min-height:320px}
     .dayCard.endurance{background:var(--blue-soft);border-color:#b8d1fb}.dayCard.group{background:var(--orange-soft);border-color:#ffd0ae}.dayCard.turbo{background:var(--purple-soft);border-color:#d6cbfb}.dayCard.recovery{background:var(--green-soft);border-color:#bfe7cd}.dayCard.rest{background:var(--rose-soft);border-color:#f5bfd9}
     .dayCard strong{display:block;font-size:14px;margin-bottom:5px}.dayCard .dtype{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}.dayCard .dhr{font-size:13px;font-weight:700;margin-bottom:4px}.dayCard .ddesc{color:var(--muted);font-size:12px;line-height:1.45}.dayCard .suggestion{margin-top:8px;font-size:11px;font-style:italic;border-top:1px solid rgba(0,0,0,.08);padding-top:7px;line-height:1.45}
-    .workoutBox{margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.08)}
-    .workoutBox .tag{display:inline-block;background:rgba(255,255,255,.75);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:3px 8px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+    .workoutBox{margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.08)}.workoutBox .tag{display:inline-block;background:rgba(255,255,255,.75);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:3px 8px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
     .workoutName{font-size:12px;font-weight:800;line-height:1.35}.workoutMeta{font-size:11px;color:var(--muted);line-height:1.35;margin-top:2px}.altBox{margin-top:8px;padding:8px;border-radius:12px;background:rgba(255,255,255,.72);border:1px dashed rgba(0,0,0,.1)}
-    .libraryGrid,.logList,.progressList{display:grid;gap:10px}
+    .libraryGrid,.logList,.progressList,.historyList{display:grid;gap:10px}
     .libControls{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
-    .libItem,.logItem,.progressItem{border:1px solid var(--border);border-radius:16px;padding:13px 14px;background:white}
-    .libItem{cursor:pointer;text-align:left;width:100%}.libItem:hover{border-color:var(--primary);background:#f7fffd}
-    .libItem strong,.logItem strong,.progressItem strong{display:block;margin-bottom:5px}.libMeta,.logMeta,.progressMeta{color:var(--muted);font-size:13px;line-height:1.45}
+    .libItem,.logItem,.progressItem,.historyItem{border:1px solid var(--border);border-radius:16px;padding:13px 14px;background:white}.libItem{cursor:pointer;text-align:left;width:100%}.libItem:hover{border-color:var(--primary);background:#f7fffd}
+    .libItem strong,.logItem strong,.progressItem strong,.historyItem strong{display:block;margin-bottom:5px}.libMeta,.logMeta,.progressMeta,.historyMeta{color:var(--muted);font-size:13px;line-height:1.45}
     .section-gap{margin-top:16px}.footerNote{margin-top:16px;color:var(--muted);font-size:13px}
-    .readinessGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-    .readinessSummary{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-top:10px}
+    .readinessGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.readinessSummary{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-top:10px}
     .statusPill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent}
-    .status-green{background:var(--green-soft);color:#1f6a34;border-color:#a8ddb9}
-    .status-amber{background:var(--amber-soft);color:#925d05;border-color:#efd57b}
-    .status-red{background:var(--rose-soft);color:#96194f;border-color:#efb5d1}
-    .checkRow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-    .checkItem{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft)}
-    .checkItem input{width:auto;margin-top:3px}
+    .status-green{background:var(--green-soft);color:#1f6a34;border-color:#a8ddb9}.status-amber{background:var(--amber-soft);color:#925d05;border-color:#efd57b}.status-red{background:var(--rose-soft);color:#96194f;border-color:#efb5d1}
+    .checkRow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.checkItem{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft)}.checkItem input{width:auto;margin-top:3px}
+    .miniTitle{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:12px 0 8px}
     @media(max-width:1024px){.grid,.row3,.heroStrip,.countdownInner,.weekGrid,.readinessGrid{grid-template-columns:1fr 1fr}.multiDay{grid-template-columns:repeat(4,1fr)}}
     @media(max-width:760px){.grid,.row,.row3,.heroStrip,.countdownInner,.weekGrid,.libControls,.coachGrid,.readinessGrid,.checkRow,.readinessSummary{grid-template-columns:1fr}h1{font-size:30px}.multiDay{grid-template-columns:repeat(2,1fr)}.wrap{padding:16px}.dayCard{min-height:unset}}
   </style>
@@ -98,9 +81,9 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <div class="badge">V5.1 · Simpler readiness UI · No reset button</div>
+      <div class="badge">V5.2 · Workout picker + FTP suggestion + readiness history</div>
       <h1>Nello Training Planner</h1>
-      <p style="margin:0;color:var(--muted);max-width:72ch;line-height:1.6">V5 keeps the exact MyWhoosh workout durations from your screenshots, adds a daily readiness check, remembers progression within workout strands, and generates short coach-style notes after you log a ride.</p>
+      <p style="margin:0;color:var(--muted);max-width:72ch;line-height:1.6">This version keeps the V5 planning logic, but makes progression tracking more reliable by letting you choose the exact completed workout, adds a conservative FTP suggestion panel, and shows a small readiness history.</p>
     </div>
     <button class="themeBtn" id="themeBtn" type="button">Toggle theme</button>
   </div>
@@ -133,7 +116,7 @@
       <div class="row3">
         <div class="field"><label for="longRideDay">Long ride day</label><select id="longRideDay"></select></div>
         <div class="field"><label for="level">Rider level</label><select id="level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></div>
-        <div class="field"><label for="fatigueLevel">How are the legs?</label><select id="fatigueLevel"><option>Fresh</option><option selected>Normal</option><option>Tired</option><option>Very tired</option></select></div>
+        <div class="field"><label for="fatigueLevel">How do the legs feel today?</label><select id="fatigueLevel"><option>Fresh</option><option selected>Normal</option><option>Tired</option><option>Very tired</option></select></div>
       </div>
       <div class="legend">
         <div class="legendItem"><span class="dot endurance"></span> Endurance</div>
@@ -172,18 +155,22 @@
       </div>
       <div class="readinessSummary">
         <div>
-          <div class="notice teal" id="readinessMessage">Set the five scores, then apply readiness to decide whether today should stay on plan or soften to the fallback option.</div>
+          <div class="notice teal" id="readinessMessage">Set the five scores, apply readiness, and try to complete it at roughly the same time each day for cleaner signals.</div>
           <div class="footerNote" id="readinessScore">Readiness score: not applied yet.</div>
         </div>
         <div><span class="statusPill status-amber" id="readinessStatus">Not set</span></div>
       </div>
       <div class="btnRow" style="margin-top:12px"><button class="btn primary" id="applyReadinessBtn" type="button">Apply readiness</button></div>
+      <div class="miniTitle">Last 7 readiness entries</div>
+      <div class="historyList" id="readinessHistory"></div>
     </section>
 
     <section class="card">
       <h2>Countdown to Nello</h2>
       <div class="countdownInner" id="countdownInner"></div>
       <div class="phaseBox" id="phaseBox"></div>
+      <div class="miniTitle">FTP guidance</div>
+      <div class="notice teal" id="ftpGuidance">Log a few rides with RPE and named workouts, then this box will offer a conservative hold / small increase / caution suggestion.</div>
     </section>
   </div>
 
@@ -200,19 +187,20 @@
       <div class="field"><label>Chosen file</label><input id="chosenFile" type="text" value="No file detected yet." readonly /></div>
       <div class="row">
         <div class="field"><label for="guess">Detected workout type</label><input id="guess" type="text" value="No guess yet" readonly /></div>
-        <div class="field"><label for="confirmWorkout">Confirm or correct</label><select id="confirmWorkout"><option>Endurance</option><option>Tempo</option><option>Sweet spot</option><option>Threshold</option><option>VO2 max</option><option>Recovery</option><option>Group ride</option></select></div>
+        <div class="field"><label for="confirmWorkout">Confirm workout type</label><select id="confirmWorkout"><option>Endurance</option><option>Tempo</option><option>Sweet spot</option><option>Threshold</option><option>VO2 max</option><option>Recovery</option><option>Group ride</option></select></div>
       </div>
+      <div class="field"><label for="completedWorkoutName">Which named workout did you actually complete?</label><select id="completedWorkoutName"></select></div>
       <div class="row3">
         <div class="field"><label for="rideFeel">How did it feel?</label><select id="rideFeel"><option>Easy</option><option selected>Normal</option><option>Hard</option><option>Very hard</option></select></div>
-        <div class="field"><label for="completionStatus">Completion status</label><select id="completionStatus"><option selected>Completed</option><option>Shortened</option><option>Skipped</option><option>Swapped</option></select></div>
+        <div class="field"><label for="completionStatus">What happened?</label><select id="completionStatus"><option selected>Completed</option><option>Shortened</option><option>Skipped</option><option>Swapped</option></select></div>
         <div class="field"><label for="rideRpe">RPE (1–10)</label><select id="rideRpe"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
       </div>
       <div class="checkRow">
         <label class="checkItem"><input id="highHrFlag" type="checkbox"><span>Heart rate felt unusually high for the power.</span></label>
         <label class="checkItem"><input id="heavyLegsFlag" type="checkbox"><span>Legs felt heavy or blocked.</span></label>
       </div>
-      <div class="field"><label for="rideNote">Quick coach note</label><textarea id="rideNote" placeholder="Optional note about how the ride actually felt."></textarea></div>
-      <div class="notice teal" id="statusBox">Choose a FIT file, confirm the workout type, add RPE and completion status, then record it.</div>
+      <div class="field"><label for="rideNote">Anything worth noting?</label><textarea id="rideNote" placeholder="Optional note about how the ride actually felt."></textarea></div>
+      <div class="notice teal" id="statusBox">Choose a FIT file, confirm the workout type, select the named workout if relevant, add RPE and completion status, then record it.</div>
       <div class="btnRow" style="margin-top:12px"><button class="btn primary" id="recordBtn" type="button">Record workout</button></div>
       <div id="recordResult" class="footerNote"></div>
     </section>
@@ -248,12 +236,12 @@
 (function () {
   'use strict';
   var STORAGE_KEYS = {
-    rideLog: 'nello_log_v5',
-    readiness: 'nello_readiness_v5',
-    progression: 'nello_progression_v5',
-    coachNotes: 'nello_coach_notes_v5'
+    rideLog: 'nello_log_v52',
+    readiness: 'nello_readiness_v52',
+    progression: 'nello_progression_v52',
+    coachNotes: 'nello_coach_notes_v52',
+    readinessHistory: 'nello_readiness_history_v52'
   };
-
   var DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   function el(id){ return document.getElementById(id); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); }); }
@@ -266,7 +254,8 @@
     savedRides: loadStore(STORAGE_KEYS.rideLog, []),
     readinessToday: loadStore(STORAGE_KEYS.readiness, null),
     progressions: loadStore(STORAGE_KEYS.progression, null),
-    coachNotes: loadStore(STORAGE_KEYS.coachNotes, [])
+    coachNotes: loadStore(STORAGE_KEYS.coachNotes, []),
+    readinessHistory: loadStore(STORAGE_KEYS.readinessHistory, [])
   };
 
   var library = [
@@ -307,20 +296,13 @@
     "40/20's into Threshold": { strand:'thresholdCombo', level:2 },
     "12min Over-Under's": { strand:'thresholdCombo', level:3 }
   };
-
   var progressionStrands = {
     aerobic12s: ["Aerobic 12's #1", "Aerobic 12's #2", "Aerobic 12's #3"],
     acSweetspot: ['AC + Sweetspot #1', 'AC + Sweetspot #2'],
     forty20s: ["40/20's #1", "40/20's #2", '40/20 Efforts'],
     thresholdCombo: ["40/20's into FTP #1", "40/20's into Threshold", "12min Over-Under's"]
   };
-
-  var progressionLabels = {
-    aerobic12s: 'Aerobic 12\'s',
-    acSweetspot: 'AC + Sweetspot',
-    forty20s: '40/20\'s',
-    thresholdCombo: 'Threshold combo'
-  };
+  var progressionLabels = { aerobic12s:"Aerobic 12's", acSweetspot:'AC + Sweetspot', forty20s:"40/20's", thresholdCombo:'Threshold combo' };
 
   function defaultProgressions(){
     return {
@@ -330,86 +312,38 @@
       thresholdCombo: { currentLevel:1, lastCompletedWorkout:'', lastOutcome:'', lastRPE:null }
     };
   }
-
   if (!state.progressions) state.progressions = defaultProgressions();
 
   var progressionsByPhaseGoal = {
     build: {
-      'Event prep': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'acSweetspot', fallback:'30min Sub-Threshold' },
-        { strand:'thresholdCombo', fallback:'Aerobic Development' }
-      ],
-      'FTP boost': [
-        { strand:'acSweetspot', fallback:'30min Sub-Threshold' },
-        { strand:'acSweetspot', fallback:'Capacity into Sweetspot #1' },
-        { strand:'thresholdCombo', fallback:'Aerobic Development' }
-      ],
-      'Endurance': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Aerobic Development' },
-        { strand:'aerobic12s', fallback:'Aerobic Development Lite' }
-      ],
-      'General fitness': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'acSweetspot', fallback:'Aerobic Development' },
-        { strand:'forty20s', fallback:'Easy recovery 45' }
-      ]
+      'Event prep': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'acSweetspot', fallback:'30min Sub-Threshold' }, { strand:'thresholdCombo', fallback:'Aerobic Development' } ],
+      'FTP boost': [ { strand:'acSweetspot', fallback:'30min Sub-Threshold' }, { strand:'acSweetspot', fallback:'Capacity into Sweetspot #1' }, { strand:'thresholdCombo', fallback:'Aerobic Development' } ],
+      'Endurance': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Aerobic Development' }, { strand:'aerobic12s', fallback:'Aerobic Development Lite' } ],
+      'General fitness': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'acSweetspot', fallback:'Aerobic Development' }, { strand:'forty20s', fallback:'Easy recovery 45' } ]
     },
     sharpen: {
-      'Event prep': [
-        { strand:'acSweetspot', fallback:'30min Sub-Threshold' },
-        { strand:'thresholdCombo', fallback:'Capacity into Sweetspot #1' },
-        { strand:'forty20s', fallback:'Easy recovery 45' }
-      ],
-      'FTP boost': [
-        { strand:'thresholdCombo', fallback:'30min Sub-Threshold' },
-        { strand:'thresholdCombo', fallback:'Capacity into Sweetspot #1' },
-        { strand:'forty20s', fallback:'Easy recovery 45' }
-      ],
-      'Endurance': [
-        { strand:'aerobic12s', fallback:'Aerobic Development' },
-        { strand:'aerobic12s', fallback:'Aerobic Development Lite' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' }
-      ],
-      'General fitness': [
-        { strand:'acSweetspot', fallback:'Aerobic Development' },
-        { strand:'forty20s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' }
-      ]
+      'Event prep': [ { strand:'acSweetspot', fallback:'30min Sub-Threshold' }, { strand:'thresholdCombo', fallback:'Capacity into Sweetspot #1' }, { strand:'forty20s', fallback:'Easy recovery 45' } ],
+      'FTP boost': [ { strand:'thresholdCombo', fallback:'30min Sub-Threshold' }, { strand:'thresholdCombo', fallback:'Capacity into Sweetspot #1' }, { strand:'forty20s', fallback:'Easy recovery 45' } ],
+      'Endurance': [ { strand:'aerobic12s', fallback:'Aerobic Development' }, { strand:'aerobic12s', fallback:'Aerobic Development Lite' }, { strand:'aerobic12s', fallback:'Easy recovery 45' } ],
+      'General fitness': [ { strand:'acSweetspot', fallback:'Aerobic Development' }, { strand:'forty20s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' } ]
     },
     taper: {
-      'Event prep': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'forty20s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' }
-      ],
-      'FTP boost': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'acSweetspot', fallback:'Easy recovery 45' },
-        { strand:'forty20s', fallback:'Easy recovery 45' }
-      ],
-      'Endurance': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' }
-      ],
-      'General fitness': [
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' },
-        { strand:'aerobic12s', fallback:'Easy recovery 45' }
-      ]
+      'Event prep': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'forty20s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' } ],
+      'FTP boost': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'acSweetspot', fallback:'Easy recovery 45' }, { strand:'forty20s', fallback:'Easy recovery 45' } ],
+      'Endurance': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' } ],
+      'General fitness': [ { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' }, { strand:'aerobic12s', fallback:'Easy recovery 45' } ]
     }
   };
 
   function byName(name){ return library.find(function(w){ return w.name === name; }); }
-  function buildDayToggles(containerId, selected){
-    var box = el(containerId);
-    box.innerHTML = DAYS.map(function(day){ var checked = selected.indexOf(day) !== -1 ? 'checked' : ''; return '<label class="dayToggle"><input type="checkbox" value="' + day + '" ' + checked + '><span>' + day + '</span></label>'; }).join('');
-    box.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('change', function(){ syncConstraints(); buildWeek(); }); });
-  }
+  function buildDayToggles(containerId, selected){ var box = el(containerId); box.innerHTML = DAYS.map(function(day){ var checked = selected.indexOf(day) !== -1 ? 'checked' : ''; return '<label class="dayToggle"><input type="checkbox" value="' + day + '" ' + checked + '><span>' + day + '</span></label>'; }).join(''); box.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('change', function(){ syncConstraints(); buildWeek(); }); }); }
   function fillDaySelect(id, selected){ el(id).innerHTML = DAYS.map(function(day){ return '<option ' + (day === selected ? 'selected' : '') + '>' + day + '</option>'; }).join(''); }
   function getChecked(containerId){ return Array.from(el(containerId).querySelectorAll('input:checked')).map(function(inp){ return inp.value; }); }
+
+  function populateCompletedWorkoutName(){
+    var opts = ['<option value="">No named workout / not sure</option>'].concat(library.map(function(item){ return '<option value="' + esc(item.name) + '">' + esc(item.name) + ' · ' + esc(item.type) + '</option>'; }));
+    el('completedWorkoutName').innerHTML = opts.join('');
+  }
 
   function syncConstraints(){
     var group = getChecked('groupDays'), turbo = getChecked('turboDays'), rest = getChecked('restDays'), longRideDay = el('longRideDay').value;
@@ -418,87 +352,48 @@
     else el('prefNote').textContent = 'Use these settings to shape the week for your own routine rather than one fixed Nello schedule.';
   }
 
-  function getDaysLeft(){
-    var target = new Date(el('eventDate').value || '2026-06-28');
-    if (isNaN(target.getTime())) target = new Date('2026-06-28');
-    target.setHours(0,0,0,0);
-    var now = new Date(); now.setHours(0,0,0,0);
-    return Math.max(0, Math.ceil((target - now) / 86400000));
-  }
+  function getDaysLeft(){ var target = new Date(el('eventDate').value || '2026-06-28'); if (isNaN(target.getTime())) target = new Date('2026-06-28'); target.setHours(0,0,0,0); var now = new Date(); now.setHours(0,0,0,0); return Math.max(0, Math.ceil((target - now) / 86400000)); }
   function getPhase(daysLeft){ if(daysLeft > 14) return 'build'; if(daysLeft > 7) return 'sharpen'; return 'taper'; }
-
-  function renderCountdown(){
-    var daysLeft = getDaysLeft(), weeks = Math.floor(daysLeft / 7), remDays = daysLeft % 7, active = weeks * 5 + Math.min(remDays, 5), turbo = weeks * 2 + Math.min(remDays, 2);
-    el('countdownInner').innerHTML = [[daysLeft,'Days to go'],[weeks,'Full weeks'],[active,'Active days'],[turbo,'Key turbo days']].map(function(x){ return '<div class="countNum"><span>' + x[0] + '</span><small>' + x[1] + '</small></div>'; }).join('');
-    var phase = getPhase(daysLeft), msgs = {
-      build:'<strong>Build phase</strong> — focus on aerobic base, repeatable quality, and one or two hard anchors in the week.',
-      sharpen:'<strong>Sharpen phase</strong> — trim volume slightly, keep the key intensity, and protect freshness.',
-      taper:'<strong>Taper phase</strong> — keep the legs awake but avoid digging a hole. Fresh beats tired.'
-    };
-    el('phaseBox').className = 'phaseBox phase-' + phase; el('phaseBox').innerHTML = msgs[phase]; el('phaseSummary').textContent = phase.charAt(0).toUpperCase() + phase.slice(1); return phase;
-  }
+  function renderCountdown(){ var daysLeft = getDaysLeft(), weeks = Math.floor(daysLeft / 7), remDays = daysLeft % 7, active = weeks * 5 + Math.min(remDays, 5), turbo = weeks * 2 + Math.min(remDays, 2); el('countdownInner').innerHTML = [[daysLeft,'Days to go'],[weeks,'Full weeks'],[active,'Active days'],[turbo,'Key turbo days']].map(function(x){ return '<div class="countNum"><span>' + x[0] + '</span><small>' + x[1] + '</small></div>'; }).join(''); var phase = getPhase(daysLeft), msgs = { build:'<strong>Build phase</strong> — focus on aerobic base, repeatable quality, and one or two hard anchors in the week.', sharpen:'<strong>Sharpen phase</strong> — trim volume slightly, keep the key intensity, and protect freshness.', taper:'<strong>Taper phase</strong> — keep the legs awake but avoid digging a hole. Fresh beats tired.' }; el('phaseBox').className = 'phaseBox phase-' + phase; el('phaseBox').innerHTML = msgs[phase]; el('phaseSummary').textContent = phase.charAt(0).toUpperCase() + phase.slice(1); return phase; }
 
   function latestRide(){ return state.savedRides.length ? state.savedRides[0] : null; }
   function latestGroupRide(){ return state.savedRides.find(function(r){ return r.workout === 'Group ride'; }) || null; }
 
-  function calculateReadiness(){
-    var sleep = parseInt(el('readinessSleep').value, 10), freshness = parseInt(el('readinessFreshness').value, 10), soreness = parseInt(el('readinessSoreness').value, 10), motivation = parseInt(el('readinessMotivation').value, 10), stress = parseInt(el('readinessStress').value, 10);
-    var score = sleep + freshness + motivation + (6 - soreness) + (6 - stress);
-    var status = score >= 20 ? 'Green' : score >= 14 ? 'Amber' : 'Red';
-    return { date:todayKey(), sleep:sleep, freshness:freshness, soreness:soreness, motivation:motivation, stress:stress, score:score, status:status };
-  }
+  function calculateReadiness(){ var sleep = parseInt(el('readinessSleep').value, 10), freshness = parseInt(el('readinessFreshness').value, 10), soreness = parseInt(el('readinessSoreness').value, 10), motivation = parseInt(el('readinessMotivation').value, 10), stress = parseInt(el('readinessStress').value, 10); var score = sleep + freshness + motivation + (6 - soreness) + (6 - stress); var status = score >= 20 ? 'Green' : score >= 14 ? 'Amber' : 'Red'; return { date:todayKey(), sleep:sleep, freshness:freshness, soreness:soreness, motivation:motivation, stress:stress, score:score, status:status }; }
 
   function renderReadiness(){
     var r = state.readinessToday;
     if (!r || r.date !== todayKey()) {
       el('readinessScore').textContent = 'Readiness score: not applied yet.';
-      el('readinessMessage').textContent = 'Set the five scores, then apply readiness to decide whether today should stay on plan or soften to the fallback option.';
+      el('readinessMessage').textContent = 'Set the five scores, apply readiness, and try to complete it at roughly the same time each day for cleaner signals.';
       el('readinessStatus').textContent = 'Not set';
       el('readinessStatus').className = 'statusPill status-amber';
       return;
     }
-    el('readinessSleep').value = String(r.sleep);
-    el('readinessFreshness').value = String(r.freshness);
-    el('readinessSoreness').value = String(r.soreness);
-    el('readinessMotivation').value = String(r.motivation);
-    el('readinessStress').value = String(r.stress);
     el('readinessScore').textContent = 'Readiness score: ' + r.score + ' / 25';
     el('readinessStatus').textContent = r.status;
     el('readinessStatus').className = 'statusPill ' + (r.status === 'Green' ? 'status-green' : r.status === 'Amber' ? 'status-amber' : 'status-red');
     el('readinessMessage').textContent = r.status === 'Green' ? 'Green readiness: keep the planned session unless recent ride feedback says otherwise.' : r.status === 'Amber' ? 'Amber readiness: hold progression and prefer the easier fallback today.' : 'Red readiness: recovery or rest is a better call than forcing intensity today.';
   }
 
+  function renderReadinessHistory(){
+    var items = state.readinessHistory.slice(0,7);
+    if (!items.length) { el('readinessHistory').innerHTML = '<div class="historyItem"><strong>No readiness history yet</strong><div class="historyMeta">Apply readiness on a few days and your last seven entries will appear here.</div></div>'; return; }
+    el('readinessHistory').innerHTML = items.map(function(item){ return '<div class="historyItem"><strong>' + esc(item.date) + ' · ' + esc(item.status) + '</strong><div class="historyMeta">Score: ' + esc(item.score) + ' / 25 · Sleep ' + esc(item.sleep) + ' · Freshness ' + esc(item.freshness) + ' · Soreness ' + esc(item.soreness) + ' · Motivation ' + esc(item.motivation) + ' · Stress ' + esc(item.stress) + '</div></div>'; }).join('');
+  }
+
   function applyReadiness(){
     state.readinessToday = calculateReadiness();
     saveStore(STORAGE_KEYS.readiness, state.readinessToday);
+    state.readinessHistory = [state.readinessToday].concat(state.readinessHistory.filter(function(x){ return x.date !== state.readinessToday.date; })).slice(0,7);
+    saveStore(STORAGE_KEYS.readinessHistory, state.readinessHistory);
     renderReadiness();
+    renderReadinessHistory();
     buildWeek();
   }
 
-  function resetReadiness(){
-    state.readinessToday = null;
-    saveStore(STORAGE_KEYS.readiness, null);
-    ['readinessSleep','readinessFreshness','readinessSoreness','readinessMotivation','readinessStress'].forEach(function(id){ el(id).value = '3'; });
-    renderReadiness();
-    buildWeek();
-  }
-
-  function getNextWorkoutForStrand(strand){
-    var prog = state.progressions[strand] || { currentLevel:1 };
-    var list = progressionStrands[strand] || [];
-    if (!list.length) return null;
-    var idx = Math.max(1, Math.min(prog.currentLevel || 1, list.length)) - 1;
-    return byName(list[idx]);
-  }
-
-  function renderProgressions(){
-    var rows = Object.keys(progressionStrands).map(function(strand){
-      var prog = state.progressions[strand] || { currentLevel:1, lastCompletedWorkout:'', lastOutcome:'', lastRPE:null };
-      var nextWorkout = getNextWorkoutForStrand(strand);
-      return '<div class="progressItem"><strong>' + esc(progressionLabels[strand]) + '</strong><div class="progressMeta">Current level: ' + esc(prog.currentLevel || 1) + '</div><div class="progressMeta">Last completed: ' + esc(prog.lastCompletedWorkout || 'None yet') + '</div><div class="progressMeta">Last outcome: ' + esc(prog.lastOutcome || '—') + ' · Last RPE: ' + esc(prog.lastRPE == null ? '—' : prog.lastRPE) + '</div><div class="progressMeta">Next suggested: ' + esc(nextWorkout ? nextWorkout.name : '—') + '</div></div>';
-    }).join('');
-    el('progressList').innerHTML = rows;
-  }
+  function getNextWorkoutForStrand(strand){ var prog = state.progressions[strand] || { currentLevel:1 }; var list = progressionStrands[strand] || []; if (!list.length) return null; var idx = Math.max(1, Math.min(prog.currentLevel || 1, list.length)) - 1; return byName(list[idx]); }
+  function renderProgressions(){ var rows = Object.keys(progressionStrands).map(function(strand){ var prog = state.progressions[strand] || { currentLevel:1, lastCompletedWorkout:'', lastOutcome:'', lastRPE:null }; var nextWorkout = getNextWorkoutForStrand(strand); return '<div class="progressItem"><strong>' + esc(progressionLabels[strand]) + '</strong><div class="progressMeta">Current level: ' + esc(prog.currentLevel || 1) + '</div><div class="progressMeta">Last completed: ' + esc(prog.lastCompletedWorkout || 'None yet') + '</div><div class="progressMeta">Last outcome: ' + esc(prog.lastOutcome || '—') + ' · Last RPE: ' + esc(prog.lastRPE == null ? '—' : prog.lastRPE) + '</div><div class="progressMeta">Next suggested: ' + esc(nextWorkout ? nextWorkout.name : '—') + '</div></div>'; }).join(''); el('progressList').innerHTML = rows; }
 
   function updateProgressionFromRide(rideEntry){
     var match = progressionMap[rideEntry.workoutName];
@@ -509,49 +404,25 @@
     prog.lastOutcome = rideEntry.completionStatus;
     prog.lastRPE = rideEntry.rpe;
     var maxLevel = progressionStrands[strand].length;
-
-    if (rideEntry.completionStatus === 'Completed' && rideEntry.rpe <= 7 && !rideEntry.heavyLegsFlag) {
-      prog.currentLevel = Math.min(maxLevel, Math.max(prog.currentLevel, level + 1));
-    } else if (rideEntry.completionStatus === 'Completed' && rideEntry.rpe >= 8) {
-      prog.currentLevel = Math.max(1, level);
-    } else if (rideEntry.completionStatus !== 'Completed') {
-      prog.currentLevel = rideEntry.heavyLegsFlag ? Math.max(1, level - 1) : Math.max(1, level);
-    }
+    if (rideEntry.completionStatus === 'Completed' && rideEntry.rpe <= 7 && !rideEntry.heavyLegsFlag) prog.currentLevel = Math.min(maxLevel, Math.max(prog.currentLevel, level + 1));
+    else if (rideEntry.completionStatus === 'Completed' && rideEntry.rpe >= 8) prog.currentLevel = Math.max(1, level);
+    else if (rideEntry.completionStatus !== 'Completed') prog.currentLevel = rideEntry.heavyLegsFlag ? Math.max(1, level - 1) : Math.max(1, level);
     state.progressions[strand] = prog;
     saveStore(STORAGE_KEYS.progression, state.progressions);
   }
 
-  function plannedWorkoutForSlot(slotIndex, phase, goal){
-    var plan = progressionsByPhaseGoal[phase][goal] || progressionsByPhaseGoal[phase]['Event prep'];
-    var config = plan[Math.min(slotIndex, plan.length - 1)];
-    return { primary:getNextWorkoutForStrand(config.strand), fallback:byName(config.fallback), strand:config.strand };
-  }
+  function plannedWorkoutForSlot(slotIndex, phase, goal){ var plan = progressionsByPhaseGoal[phase][goal] || progressionsByPhaseGoal[phase]['Event prep']; var config = plan[Math.min(slotIndex, plan.length - 1)]; return { primary:getNextWorkoutForStrand(config.strand), fallback:byName(config.fallback), strand:config.strand }; }
+  function finalWorkoutDecision(slotIndex, phase, goal){ var base = plannedWorkoutForSlot(slotIndex, phase, goal), primary = base.primary, fallback = base.fallback, readiness = state.readinessToday && state.readinessToday.date === todayKey() ? state.readinessToday.status : null, fatigue = el('fatigueLevel').value, last = latestRide(), lastGroup = latestGroupRide(), chosen = primary, reason = 'Using main planned workout.'; if (readiness === 'Red') { chosen = byName('Easy recovery 45') || fallback || primary; reason = 'Readiness is red, so the app is replacing the hard session with recovery.'; } else if (readiness === 'Amber') { chosen = fallback || primary; reason = 'Readiness is amber, so the app is holding progression and using the easier option.'; } else if (fatigue === 'Very tired' || fatigue === 'Tired') { chosen = fallback || primary; reason = 'Leg freshness setting suggests using the easier option today.'; } else if ((lastGroup && (lastGroup.feel === 'Hard' || lastGroup.feel === 'Very hard')) || (last && (last.highHrFlag || last.heavyLegsFlag))) { chosen = fallback || primary; reason = 'Recent ride feedback suggests backing off and using the fallback workout.'; } return { primary:primary, fallback:fallback, chosen:chosen, reason:reason, strand:base.strand }; }
 
-  function finalWorkoutDecision(slotIndex, phase, goal){
-    var base = plannedWorkoutForSlot(slotIndex, phase, goal);
-    var primary = base.primary, fallback = base.fallback;
-    var readiness = state.readinessToday && state.readinessToday.date === todayKey() ? state.readinessToday.status : null;
-    var fatigue = el('fatigueLevel').value;
-    var last = latestRide();
-    var lastGroup = latestGroupRide();
-    var chosen = primary;
-    var reason = 'Using main planned workout.';
-
-    if (readiness === 'Red') {
-      chosen = byName('Easy recovery 45') || fallback || primary;
-      reason = 'Readiness is red, so the app is replacing the hard session with recovery.';
-    } else if (readiness === 'Amber') {
-      chosen = fallback || primary;
-      reason = 'Readiness is amber, so the app is holding progression and using the easier option.';
-    } else if (fatigue === 'Very tired' || fatigue === 'Tired') {
-      chosen = fallback || primary;
-      reason = 'Leg freshness setting suggests using the easier option today.';
-    } else if ((lastGroup && (lastGroup.feel === 'Hard' || lastGroup.feel === 'Very hard')) || (last && (last.highHrFlag || last.heavyLegsFlag))) {
-      chosen = fallback || primary;
-      reason = 'Recent ride feedback suggests backing off and using the fallback workout.';
-    }
-
-    return { primary:primary, fallback:fallback, chosen:chosen, reason:reason, strand:base.strand };
+  function computeFtpSuggestion(){
+    var ftp = parseInt(el('ftp').value || '240', 10);
+    var recent = state.savedRides.slice(0,5).filter(function(r){ return r.completionStatus === 'Completed'; });
+    if (recent.length < 3) return 'Hold FTP at ' + ftp + ' W for now. Log at least 3 completed rides before changing anything.';
+    var moderateWins = recent.filter(function(r){ return r.rpe <= 7 && !r.highHrFlag && !r.heavyLegsFlag && r.workout !== 'Recovery'; }).length;
+    var warningFlags = recent.filter(function(r){ return r.rpe >= 8 || r.highHrFlag || r.heavyLegsFlag || r.completionStatus !== 'Completed'; }).length;
+    if (moderateWins >= 3 && warningFlags === 0) return 'Conservative nudge: consider testing or trying about ' + (ftp + 2) + ' to ' + (ftp + 4) + ' W, but only if recent rides have felt controlled.';
+    if (warningFlags >= 2) return 'Caution: keep FTP at ' + ftp + ' W for now. Recent signals suggest protecting consistency rather than pushing the number.';
+    return 'Hold FTP at ' + ftp + ' W for now. The recent ride pattern looks mixed rather than clearly ready for a change.';
   }
 
   function buildWeek(){
@@ -560,101 +431,49 @@
     var styleFactor = style === 'Conservative' ? 0.9 : style === 'Ambitious' ? 1.12 : 1.0, levelFactor = level === 'Beginner' ? 0.86 : level === 'Advanced' ? 1.12 : 1.0;
     var adjustedHours = Math.max(3, Math.min(14, hours * styleFactor * levelFactor));
     var turboCounter = 0;
-
     var preset = DAYS.map(function(day){
       var card = { day:day, type:'endurance', label:'Endurance', desc:'Steady aerobic support ride', hrs:0, workoutHtml:'', suggestion:'Keep this session smooth and controlled.' };
-      if (restDays.indexOf(day) !== -1) {
-        card.type = 'rest'; card.label = 'Rest'; card.desc = 'Recovery day'; card.hrs = 0; card.suggestion = 'Rest properly so the next quality day lands well.';
-      } else if (day === longRideDay && groupDays.indexOf(day) !== -1) {
-        card.type = 'group'; card.label = 'Long group ride'; card.desc = 'Main anchor session of the week'; card.hrs = 0; card.suggestion = 'Main outdoor event-specific ride. Extra weekly time is added here first.';
-      } else if (groupDays.indexOf(day) !== -1) {
-        card.type = 'group'; card.label = 'Group ride'; card.desc = 'Use the bunch ride for real-world specificity'; card.hrs = 0; card.suggestion = 'If this ride is very hard, the next turbo should usually soften.';
-      } else if (turboDays.indexOf(day) !== -1) {
-        var slot = finalWorkoutDecision(turboCounter, phase, goal);
-        var chosen = slot.chosen;
-        turboCounter += 1;
+      if (restDays.indexOf(day) !== -1) { card.type = 'rest'; card.label = 'Rest'; card.desc = 'Recovery day'; card.hrs = 0; card.suggestion = 'Rest properly so the next quality day lands well.'; }
+      else if (day === longRideDay && groupDays.indexOf(day) !== -1) { card.type = 'group'; card.label = 'Long group ride'; card.desc = 'Main anchor session of the week'; card.hrs = 0; card.suggestion = 'Main outdoor event-specific ride. Extra weekly time is added here first.'; }
+      else if (groupDays.indexOf(day) !== -1) { card.type = 'group'; card.label = 'Group ride'; card.desc = 'Use the bunch ride for real-world specificity'; card.hrs = 0; card.suggestion = 'If this ride is very hard, the next turbo should usually soften.'; }
+      else if (turboDays.indexOf(day) !== -1) {
+        var slot = finalWorkoutDecision(turboCounter, phase, goal), chosen = slot.chosen; turboCounter += 1;
         card.type = 'turbo'; card.label = 'Turbo'; card.desc = 'Structured indoor session with exact MyWhoosh workout duration'; card.hrs = chosen.minutes / 60; card.suggestion = slot.reason;
         card.workoutHtml = '<div class="workoutBox"><div class="tag">Planned</div><div class="workoutName">' + esc(slot.primary ? slot.primary.name : '—') + '</div><div class="workoutMeta">' + (slot.primary ? slot.primary.minutes + ' min · ' + slot.primary.tss + ' TSS · ' + esc(slot.primary.notes) : 'No workout found') + '</div><div class="altBox"><div class="tag">Recommended today</div><div class="workoutName">' + esc(chosen ? chosen.name : '—') + '</div><div class="workoutMeta">' + (chosen ? chosen.minutes + ' min · ' + chosen.tss + ' TSS' : '—') + '</div><div class="workoutMeta">Fallback option: ' + esc(slot.fallback ? slot.fallback.name : '—') + '</div></div></div>';
-      } else if (phase === 'taper' && (day === 'Fri' || day === 'Sun')) {
-        card.type = 'recovery'; card.label = 'Recovery'; card.desc = 'Legs-up support session'; card.hrs = 0.6; card.suggestion = 'Keep it light and fresh.';
-      } else {
-        card.hrs = 1.0; card.suggestion = 'Use this as aerobic support rather than a hidden hard day.';
-      }
+      } else if (phase === 'taper' && (day === 'Fri' || day === 'Sun')) { card.type = 'recovery'; card.label = 'Recovery'; card.desc = 'Legs-up support session'; card.hrs = 0.6; card.suggestion = 'Keep it light and fresh.'; }
+      else { card.hrs = 1.0; card.suggestion = 'Use this as aerobic support rather than a hidden hard day.'; }
       return card;
     });
-
-    var usedHours = preset.reduce(function(sum, c){ return sum + c.hrs; }, 0);
-    var spareHours = Math.max(0, adjustedHours - usedHours);
-    var groupCards = preset.filter(function(c){ return c.type === 'group'; });
-    var nonGroupEnduranceCards = preset.filter(function(c){ return c.type === 'endurance' || c.type === 'recovery'; });
-
+    var usedHours = preset.reduce(function(sum, c){ return sum + c.hrs; }, 0), spareHours = Math.max(0, adjustedHours - usedHours), groupCards = preset.filter(function(c){ return c.type === 'group'; }), nonGroupEnduranceCards = preset.filter(function(c){ return c.type === 'endurance' || c.type === 'recovery'; });
     if (groupCards.length) {
-      var longGroup = groupCards.find(function(c){ return c.day === longRideDay; });
-      var otherGroups = groupCards.filter(function(c){ return c.day !== longRideDay; });
-      var longBase = style === 'Ambitious' ? 3.2 : style === 'Balanced' ? 2.7 : 2.2;
-      var otherBase = style === 'Ambitious' ? 2.0 : style === 'Balanced' ? 1.75 : 1.5;
-      if (longGroup) longGroup.hrs = longBase;
-      otherGroups.forEach(function(c){ c.hrs = otherBase; });
-      usedHours = preset.reduce(function(sum, c){ return sum + c.hrs; }, 0);
-      spareHours = Math.max(0, adjustedHours - usedHours);
-      if (longGroup) {
-        var longShare = otherGroups.length ? spareHours * 0.65 : spareHours;
-        longGroup.hrs += longShare;
-        spareHours -= longShare;
-      }
-      if (otherGroups.length && spareHours > 0) {
-        var each = spareHours / otherGroups.length;
-        otherGroups.forEach(function(c){ c.hrs += each; });
-      }
-    } else if (nonGroupEnduranceCards.length) {
-      var eachEndurance = spareHours / nonGroupEnduranceCards.length;
-      nonGroupEnduranceCards.forEach(function(c){ c.hrs += eachEndurance; });
-    }
-
-    var cards = preset;
-    var groupCount = cards.filter(function(c){ return c.type === 'group'; }).length;
-    var turboCount = cards.filter(function(c){ return c.type === 'turbo'; }).length;
-    var restCount = cards.filter(function(c){ return c.type === 'rest'; }).length;
-    var enduranceCount = cards.filter(function(c){ return c.type === 'endurance' || c.type === 'recovery'; }).length;
-    el('heroEndurance').textContent = enduranceCount; el('heroGroup').textContent = groupCount; el('heroTurbo').textContent = turboCount; el('heroRest').textContent = restCount;
-    el('weekShape').textContent = groupCount + ' group / ' + turboCount + ' turbo / ' + restCount + ' rest';
-    var nextTurbo = cards.find(function(c){ return c.type === 'turbo'; });
-    el('nextAction').textContent = nextTurbo ? 'See weekly planner' : 'Aerobic support';
-    el('ftpSuggestion').textContent = (parseInt(el('ftp').value || '240', 10)) + ' W';
+      var longGroup = groupCards.find(function(c){ return c.day === longRideDay; }), otherGroups = groupCards.filter(function(c){ return c.day !== longRideDay; }), longBase = style === 'Ambitious' ? 3.2 : style === 'Balanced' ? 2.7 : 2.2, otherBase = style === 'Ambitious' ? 2.0 : style === 'Balanced' ? 1.75 : 1.5;
+      if (longGroup) longGroup.hrs = longBase; otherGroups.forEach(function(c){ c.hrs = otherBase; }); usedHours = preset.reduce(function(sum, c){ return sum + c.hrs; }, 0); spareHours = Math.max(0, adjustedHours - usedHours);
+      if (longGroup) { var longShare = otherGroups.length ? spareHours * 0.65 : spareHours; longGroup.hrs += longShare; spareHours -= longShare; }
+      if (otherGroups.length && spareHours > 0) { var each = spareHours / otherGroups.length; otherGroups.forEach(function(c){ c.hrs += each; }); }
+    } else if (nonGroupEnduranceCards.length) { var eachEndurance = spareHours / nonGroupEnduranceCards.length; nonGroupEnduranceCards.forEach(function(c){ c.hrs += eachEndurance; }); }
+    var cards = preset, groupCount = cards.filter(function(c){ return c.type === 'group'; }).length, turboCount = cards.filter(function(c){ return c.type === 'turbo'; }).length, restCount = cards.filter(function(c){ return c.type === 'rest'; }).length, enduranceCount = cards.filter(function(c){ return c.type === 'endurance' || c.type === 'recovery'; }).length;
+    el('heroEndurance').textContent = enduranceCount; el('heroGroup').textContent = groupCount; el('heroTurbo').textContent = turboCount; el('heroRest').textContent = restCount; el('weekShape').textContent = groupCount + ' group / ' + turboCount + ' turbo / ' + restCount + ' rest';
+    var nextTurbo = cards.find(function(c){ return c.type === 'turbo'; }); el('nextAction').textContent = nextTurbo && nextTurbo.workoutHtml ? 'See weekly planner' : 'Aerobic support'; el('ftpSuggestion').textContent = (parseInt(el('ftp').value || '240', 10)) + ' W';
     el('weekGrid').innerHTML = cards.map(function(d){ return '<div class="dayCard ' + d.type + '"><strong>' + d.day + '</strong><div class="dtype">' + esc(d.label) + '</div><div class="dhr">' + (d.hrs > 0 ? d.hrs.toFixed(1) + ' h' : 'Rest') + '</div><div class="ddesc">' + esc(d.desc) + '</div>' + (d.workoutHtml || '') + '<div class="suggestion">' + esc(d.suggestion) + '</div></div>'; }).join('');
-    var totalHours = cards.reduce(function(sum, c){ return sum + c.hrs; }, 0).toFixed(1);
-    el('planNote').textContent = totalHours + ' h planned across ' + (7 - restCount) + ' active day(s). Turbo sessions use exact MyWhoosh durations, readiness can override intensity, and spare weekly time is added to the group rides.';
+    var totalHours = cards.reduce(function(sum, c){ return sum + c.hrs; }, 0).toFixed(1); el('planNote').textContent = totalHours + ' h planned across ' + (7 - restCount) + ' active day(s). Turbo sessions use exact MyWhoosh durations, readiness can override intensity, and spare weekly time is added to the group rides.';
+    el('ftpGuidance').textContent = computeFtpSuggestion();
     generateCoachNotes();
   }
 
   function generateCoachNotes(){
-    var notes = [];
-    var readiness = state.readinessToday && state.readinessToday.date === todayKey() ? state.readinessToday.status : null;
-    var last = latestRide();
+    var notes = [], readiness = state.readinessToday && state.readinessToday.date === todayKey() ? state.readinessToday.status : null, last = latestRide();
     if (readiness === 'Red') notes.push('Freshness looks low today. Protect recovery rather than forcing intensity.');
     else if (readiness === 'Amber') notes.push('Today looks more like a hold day than a progression day. Use the easier option if in doubt.');
     else if (readiness === 'Green') notes.push('Readiness looks good. You can keep the planned session unless recent ride feedback says otherwise.');
     else notes.push('No readiness score saved today, so the planner is leaning on your weekly structure and recent ride feedback.');
-
     if (last) {
       if (last.highHrFlag) notes.push('Heart rate seemed high for the effort recently. Keep the next ride aerobic and controlled.');
       if (last.heavyLegsFlag) notes.push('Legs sounded blocked in the last ride. Holding or downgrading the next turbo is sensible.');
-      if (last.completionStatus === 'Completed' && last.rpe <= 7 && progressionMap[last.workoutName]) {
-        var info = progressionMap[last.workoutName];
-        var nextW = getNextWorkoutForStrand(info.strand);
-        if (nextW && nextW.name !== last.workoutName) notes.push('You handled ' + last.workoutName + ' well. ' + nextW.name + ' is the next sensible step.');
-      }
+      if (last.completionStatus === 'Completed' && last.rpe <= 7 && progressionMap[last.workoutName]) { var info = progressionMap[last.workoutName], nextW = getNextWorkoutForStrand(info.strand); if (nextW && nextW.name !== last.workoutName) notes.push('You handled ' + last.workoutName + ' well. ' + nextW.name + ' is the next sensible step.'); }
       if (last.completionStatus !== 'Completed') notes.push('The last session was not fully completed, so holding progression is the safer call for now.');
       if (last.rpe >= 8) notes.push('The last ride rated very hard, so repeating or softening the next key session is more sensible than progressing immediately.');
-    } else {
-      notes.push('Once you log a few rides, the coach notes will become more specific about progression, recovery, and next steps.');
-    }
-
-    notes = notes.slice(0, 3);
-    state.coachNotes = notes;
-    saveStore(STORAGE_KEYS.coachNotes, state.coachNotes);
-    el('coachNotesList').innerHTML = notes.map(function(n){ return '<div class="noteItem">' + esc(n) + '</div>'; }).join('');
-    el('coachBubble').textContent = 'This version uses readiness, recent ride outcomes, and progression memory to decide whether the next key workout should progress, hold, or soften.';
+    } else notes.push('Once you log a few rides, the coach notes will become more specific about progression, recovery, and next steps.');
+    notes = notes.slice(0,3); state.coachNotes = notes; saveStore(STORAGE_KEYS.coachNotes, state.coachNotes); el('coachNotesList').innerHTML = notes.map(function(n){ return '<div class="noteItem">' + esc(n) + '</div>'; }).join(''); el('coachBubble').textContent = 'This version uses readiness, recent ride outcomes, and progression memory to decide whether the next key workout should progress, hold, or soften.';
   }
 
   function renderLibrary(){
@@ -665,164 +484,43 @@
     el('libList').querySelectorAll('button[data-name]').forEach(function(btn){ btn.addEventListener('click', function(){ var name = btn.getAttribute('data-name'); if (navigator.clipboard) navigator.clipboard.writeText(name).catch(function(){}); el('libNote').textContent = 'Copied “' + name + '” — paste it into MyWhoosh.'; }); });
   }
 
-  function guessWorkout(name){
-    var n = (name || '').toLowerCase();
-    if (n.indexOf('recovery') !== -1) return 'Recovery';
-    if (n.indexOf('tempo') !== -1) return 'Tempo';
-    if (n.indexOf('sweet') !== -1) return 'Sweet spot';
-    if (n.indexOf('threshold') !== -1) return 'Threshold';
-    if (n.indexOf('vo2') !== -1 || n.indexOf('40/20') !== -1) return 'VO2 max';
-    if (n.indexOf('group') !== -1) return 'Group ride';
-    return 'Endurance';
-  }
+  function guessWorkout(name){ var n = (name || '').toLowerCase(); if (n.indexOf('recovery') !== -1) return 'Recovery'; if (n.indexOf('tempo') !== -1) return 'Tempo'; if (n.indexOf('sweet') !== -1) return 'Sweet spot'; if (n.indexOf('threshold') !== -1) return 'Threshold'; if (n.indexOf('vo2') !== -1 || n.indexOf('40/20') !== -1) return 'VO2 max'; if (n.indexOf('group') !== -1) return 'Group ride'; return 'Endurance'; }
 
   function renderLog(){
     var list = el('logList');
-    if (!state.savedRides.length) {
-      el('logNote').textContent = 'Recorded rides, readiness, progression state, and coach notes are saved locally and persist between visits on the same browser.';
-      list.innerHTML = '<div class="logItem"><strong>No rides recorded yet</strong><div class="logMeta">Choose a FIT file and record a workout to start your log.</div></div>';
-      return;
-    }
+    if (!state.savedRides.length) { el('logNote').textContent = 'Recorded rides, readiness, progression state, and coach notes are saved locally and persist between visits on the same browser.'; list.innerHTML = '<div class="logItem"><strong>No rides recorded yet</strong><div class="logMeta">Choose a FIT file and record a workout to start your log.</div></div>'; return; }
     el('logNote').textContent = state.savedRides.length + ' recorded ride' + (state.savedRides.length === 1 ? '' : 's') + ' saved locally.';
-    list.innerHTML = state.savedRides.map(function(item){
-      return '<div class="logItem"><strong>' + esc(item.workout) + (item.workoutName ? ' · ' + esc(item.workoutName) : '') + '</strong><div class="logMeta">' + esc(item.date) + ' · FTP ' + esc(item.ftp) + ' W · Feel: ' + esc(item.feel || 'Normal') + ' · Completion: ' + esc(item.completionStatus) + ' · RPE: ' + esc(item.rpe) + '</div><div class="logMeta">Flags: ' + (item.highHrFlag ? 'High HR ' : '') + (item.heavyLegsFlag ? 'Heavy legs ' : '') + (item.note ? '· Note: ' + esc(item.note) : '') + '</div><div class="logMeta">File: ' + esc(item.file) + '</div></div>';
-    }).join('');
+    list.innerHTML = state.savedRides.map(function(item){ return '<div class="logItem"><strong>' + esc(item.workout) + (item.workoutName ? ' · ' + esc(item.workoutName) : '') + '</strong><div class="logMeta">' + esc(item.date) + ' · FTP ' + esc(item.ftp) + ' W · Feel: ' + esc(item.feel || 'Normal') + ' · Completion: ' + esc(item.completionStatus) + ' · RPE: ' + esc(item.rpe) + '</div><div class="logMeta">Flags: ' + (item.highHrFlag ? 'High HR ' : '') + (item.heavyLegsFlag ? 'Heavy legs ' : '') + (item.note ? '· Note: ' + esc(item.note) : '') + '</div><div class="logMeta">File: ' + esc(item.file) + '</div></div>'; }).join('');
   }
 
   el('fitFile').addEventListener('change', function(e){
     var file = e.target.files && e.target.files[0];
-    if (!file) {
-      state.file = null;
-      el('chosenFile').value = 'No file detected yet.';
-      el('guess').value = 'No guess yet';
-      el('statusBox').textContent = 'No file was detected after the chooser closed.';
-      return;
-    }
-    state.file = file;
-    var guess = guessWorkout(file.name);
-    el('chosenFile').value = file.name + ' · ' + (file.size / 1024).toFixed(1) + ' KB';
-    el('guess').value = guess;
-    el('confirmWorkout').value = guess;
-    el('statusBox').textContent = 'File accepted. Confirm the workout type, add completion status and RPE, then press Record workout.';
+    if (!file) { state.file = null; el('chosenFile').value = 'No file detected yet.'; el('guess').value = 'No guess yet'; el('statusBox').textContent = 'No file was detected after the chooser closed.'; return; }
+    state.file = file; var guess = guessWorkout(file.name); el('chosenFile').value = file.name + ' · ' + (file.size / 1024).toFixed(1) + ' KB'; el('guess').value = guess; el('confirmWorkout').value = guess; el('statusBox').textContent = 'File accepted. Confirm the workout type, select the named workout if needed, add completion status and RPE, then press Record workout.';
+    var matchedLib = library.find(function(item){ return file.name.toLowerCase().indexOf(item.name.toLowerCase()) !== -1; });
+    el('completedWorkoutName').value = matchedLib ? matchedLib.name : '';
   });
 
   el('recordBtn').addEventListener('click', function(){
     if (!state.file) { el('statusBox').textContent = 'Choose a FIT file first.'; return; }
-    var workout = el('confirmWorkout').value;
-    var ftp = el('ftp').value || '240';
-    var stamp = new Date().toLocaleString();
-    var feel = el('rideFeel').value;
-    var completionStatus = el('completionStatus').value;
-    var rpe = parseInt(el('rideRpe').value, 10);
-    var highHrFlag = el('highHrFlag').checked;
-    var heavyLegsFlag = el('heavyLegsFlag').checked;
-    var note = el('rideNote').value.trim();
-    var workoutName = '';
-    var matchedLib = library.find(function(item){ return state.file && state.file.name.toLowerCase().indexOf(item.name.toLowerCase()) !== -1; });
-    if (matchedLib) workoutName = matchedLib.name;
-    var entry = {
-      workout: workout,
-      workoutName: workoutName,
-      ftp: ftp,
-      file: state.file.name,
-      date: stamp,
-      feel: feel,
-      completionStatus: completionStatus,
-      rpe: rpe,
-      highHrFlag: highHrFlag,
-      heavyLegsFlag: heavyLegsFlag,
-      note: note
-    };
-    state.savedRides.unshift(entry);
-    saveStore(STORAGE_KEYS.rideLog, state.savedRides);
-    updateProgressionFromRide(entry);
-    renderProgressions();
-    renderLog();
-    generateCoachNotes();
-    buildWeek();
+    var workout = el('confirmWorkout').value, ftp = el('ftp').value || '240', stamp = new Date().toLocaleString(), feel = el('rideFeel').value, completionStatus = el('completionStatus').value, rpe = parseInt(el('rideRpe').value, 10), highHrFlag = el('highHrFlag').checked, heavyLegsFlag = el('heavyLegsFlag').checked, note = el('rideNote').value.trim(), workoutName = el('completedWorkoutName').value || '';
+    var entry = { workout:workout, workoutName:workoutName, ftp:ftp, file:state.file.name, date:stamp, feel:feel, completionStatus:completionStatus, rpe:rpe, highHrFlag:highHrFlag, heavyLegsFlag:heavyLegsFlag, note:note };
+    state.savedRides.unshift(entry); saveStore(STORAGE_KEYS.rideLog, state.savedRides); updateProgressionFromRide(entry); renderProgressions(); renderLog(); generateCoachNotes(); buildWeek();
     el('recordResult').innerHTML = 'Recorded: ' + esc(workout) + (workoutName ? ' · ' + esc(workoutName) : '') + ' from ' + esc(state.file.name) + ' at FTP ' + esc(ftp) + ' W. Completion: ' + esc(completionStatus) + '. RPE: ' + esc(rpe) + '.';
-    el('statusBox').textContent = 'Workout recorded and saved locally.';
-    el('highHrFlag').checked = false;
-    el('heavyLegsFlag').checked = false;
-    el('rideNote').value = '';
-    el('completionStatus').value = 'Completed';
-    el('rideRpe').value = '6';
+    el('statusBox').textContent = 'Workout recorded and saved locally.'; el('highHrFlag').checked = false; el('heavyLegsFlag').checked = false; el('rideNote').value = ''; el('completionStatus').value = 'Completed'; el('rideRpe').value = '6';
   });
 
-  el('clearLog').addEventListener('click', function(){
-    if (!confirm('Clear all saved rides? This cannot be undone.')) return;
-    state.savedRides = [];
-    state.progressions = defaultProgressions();
-    state.coachNotes = [];
-    saveStore(STORAGE_KEYS.rideLog, state.savedRides);
-    saveStore(STORAGE_KEYS.progression, state.progressions);
-    saveStore(STORAGE_KEYS.coachNotes, state.coachNotes);
-    renderLog();
-    renderProgressions();
-    generateCoachNotes();
-    buildWeek();
-  });
-
+  el('clearLog').addEventListener('click', function(){ if (!confirm('Clear all saved rides? This cannot be undone.')) return; state.savedRides = []; state.progressions = defaultProgressions(); state.coachNotes = []; saveStore(STORAGE_KEYS.rideLog, state.savedRides); saveStore(STORAGE_KEYS.progression, state.progressions); saveStore(STORAGE_KEYS.coachNotes, state.coachNotes); renderLog(); renderProgressions(); generateCoachNotes(); buildWeek(); });
   el('generateBtn').addEventListener('click', buildWeek);
-  el('resetBtn').addEventListener('click', function(){
-    buildDayToggles('groupDays',['Tue','Thu']);
-    buildDayToggles('turboDays',['Mon','Wed','Sat']);
-    buildDayToggles('restDays',['Fri','Sun']);
-    fillDaySelect('longRideDay','Tue');
-    el('hours').value='7.5';
-    el('goal').value='Event prep';
-    el('planStyle').value='Balanced';
-    el('level').value='Intermediate';
-    el('fatigueLevel').value='Normal';
-    syncConstraints();
-    buildWeek();
-  });
-
+  el('resetBtn').addEventListener('click', function(){ buildDayToggles('groupDays',['Tue','Thu']); buildDayToggles('turboDays',['Mon','Wed','Sat']); buildDayToggles('restDays',['Fri','Sun']); fillDaySelect('longRideDay','Tue'); el('hours').value='7.5'; el('goal').value='Event prep'; el('planStyle').value='Balanced'; el('level').value='Intermediate'; el('fatigueLevel').value='Normal'; syncConstraints(); buildWeek(); });
   el('applyReadinessBtn').addEventListener('click', applyReadiness);
-
   ['eventDate','hours','goal','planStyle','level','longRideDay','fatigueLevel','ftp'].forEach(function(id){ el(id).addEventListener('change', buildWeek); });
   ['readinessSleep','readinessFreshness','readinessSoreness','readinessMotivation','readinessStress'].forEach(function(id){ el(id).addEventListener('change', renderReadiness); });
-  el('libSearch').addEventListener('input', renderLibrary);
-  el('libType').addEventListener('change', renderLibrary);
+  el('libSearch').addEventListener('input', renderLibrary); el('libType').addEventListener('change', renderLibrary);
 
-  el('themeBtn').addEventListener('click', function(){
-    var root = document.documentElement;
-    if (root.getAttribute('data-theme') === 'dark') {
-      root.setAttribute('data-theme','light');
-      document.body.style.background = 'linear-gradient(180deg,#f5f7fb 0%,#eef6f8 100%)';
-      document.documentElement.style.setProperty('--bg','#f5f7fb');
-      document.documentElement.style.setProperty('--surface','#ffffff');
-      document.documentElement.style.setProperty('--surface-soft','#f8fafc');
-      document.documentElement.style.setProperty('--border','#d9e0ea');
-      document.documentElement.style.setProperty('--text','#18212b');
-      document.documentElement.style.setProperty('--muted','#5f6b7a');
-    } else {
-      root.setAttribute('data-theme','dark');
-      document.body.style.background = 'linear-gradient(180deg,#0f172a 0%,#111827 100%)';
-      document.documentElement.style.setProperty('--bg','#111827');
-      document.documentElement.style.setProperty('--surface','#18212f');
-      document.documentElement.style.setProperty('--surface-soft','#1f2937');
-      document.documentElement.style.setProperty('--border','#314154');
-      document.documentElement.style.setProperty('--text','#f3f4f6');
-      document.documentElement.style.setProperty('--muted','#c1cad6');
-    }
-  });
+  el('themeBtn').addEventListener('click', function(){ var root = document.documentElement; if (root.getAttribute('data-theme') === 'dark') { root.setAttribute('data-theme','light'); document.body.style.background = 'linear-gradient(180deg,#f5f7fb 0%,#eef6f8 100%)'; document.documentElement.style.setProperty('--bg','#f5f7fb'); document.documentElement.style.setProperty('--surface','#ffffff'); document.documentElement.style.setProperty('--surface-soft','#f8fafc'); document.documentElement.style.setProperty('--border','#d9e0ea'); document.documentElement.style.setProperty('--text','#18212b'); document.documentElement.style.setProperty('--muted','#5f6b7a'); } else { root.setAttribute('data-theme','dark'); document.body.style.background = 'linear-gradient(180deg,#0f172a 0%,#111827 100%)'; document.documentElement.style.setProperty('--bg','#111827'); document.documentElement.style.setProperty('--surface','#18212f'); document.documentElement.style.setProperty('--surface-soft','#1f2937'); document.documentElement.style.setProperty('--border','#314154'); document.documentElement.style.setProperty('--text','#f3f4f6'); document.documentElement.style.setProperty('--muted','#c1cad6'); } });
 
-  function init(){
-    buildDayToggles('groupDays',['Tue','Thu']);
-    buildDayToggles('turboDays',['Mon','Wed','Sat']);
-    buildDayToggles('restDays',['Fri','Sun']);
-    fillDaySelect('longRideDay','Tue');
-    syncConstraints();
-    renderCountdown();
-    renderReadiness();
-    renderLibrary();
-    renderLog();
-    renderProgressions();
-    generateCoachNotes();
-    buildWeek();
-  }
-
+  function init(){ buildDayToggles('groupDays',['Tue','Thu']); buildDayToggles('turboDays',['Mon','Wed','Sat']); buildDayToggles('restDays',['Fri','Sun']); fillDaySelect('longRideDay','Tue'); populateCompletedWorkoutName(); syncConstraints(); renderCountdown(); renderReadiness(); renderReadinessHistory(); renderLibrary(); renderLog(); renderProgressions(); generateCoachNotes(); buildWeek(); }
   init();
 }());
 </script>
