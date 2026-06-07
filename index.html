@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V6.5</title>
+  <title>Nello Training Planner V6.6</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <div class="badge">V6.5 · fixed today logic, single readiness area, working readiness button</div>
+      <div class="badge">V6.6 · fixed today logic, single readiness area, working readiness button</div>
       <h1>Nello Training Planner</h1>
       <p class="lead">This version keeps the today-first layout, removes the duplicate readiness checker, fixes the preview/current day sync, and makes the readiness action update the app immediately.</p>
     </div>
@@ -229,6 +229,7 @@
       <div class="detailsBody"><div class="logList" id="logList"></div><div class="btnRow"><button class="btn ghost" id="clearLog" type="button">Clear all log entries</button></div></div>
     </details>
   </div>
+<div class="card" id="debugCard" style="margin-top:12px;display:none"><h2>App status</h2><div class="notice gold" id="debugMessage">Loading…</div></div>
 </div>
 
 <script>
@@ -239,6 +240,8 @@
   var DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
   function el(id){return document.getElementById(id)}
+  function safeText(id,msg){var node=el(id); if(node) node.textContent=msg}
+  function showDebug(msg){var card=el('debugCard'), box=el('debugMessage'); if(card) card.style.display='block'; if(box) box.textContent=msg}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]})}
   function loadStore(k,f){try{var r=localStorage.getItem(k);return r?JSON.parse(r):f}catch(e){return f}}
   function saveStore(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
@@ -542,7 +545,7 @@
     return 'Endurance'
   }
 
-  el('fitFile').addEventListener('change',function(e){
+  if(el('fitFile')) el('fitFile').addEventListener('change',function(e){
     var file=e.target.files&&e.target.files[0];
     if(!file){state.file=null;el('chosenFile').value='No file detected yet.';el('guess').value='No guess yet';return}
     state.file=file;
@@ -554,7 +557,7 @@
     el('completedWorkoutName').value=matchedLib?matchedLib.name:'';
   });
 
-  el('recordBtn').addEventListener('click',function(){
+  if(el('recordBtn')) el('recordBtn').addEventListener('click',function(){
     if(!state.file){el('statusBox').textContent='Choose a FIT file first.';return}
     var entry={workout:el('confirmWorkout').value,workoutName:el('completedWorkoutName').value||'',ftp:el('ftp').value||'240',file:state.file.name,date:new Date().toLocaleString(),feel:el('rideFeel').value,completionStatus:el('completionStatus').value,rpe:parseInt(el('rideRpe').value,10),highHrFlag:el('highHrFlag').checked,heavyLegsFlag:el('heavyLegsFlag').checked,note:el('rideNote').value.trim(),avgPower:el('avgPower').value.trim(),avgHr:el('avgHr').value.trim(),maxHr:el('maxHr').value.trim(),rideDurationMins:el('rideDurationMins').value.trim()};
     state.savedRides.unshift(entry);
@@ -567,7 +570,7 @@
     el('recordResult').textContent='Recorded: '+entry.workout+(entry.workoutName?' · '+entry.workoutName:'')+' · RPE '+entry.rpe+'.';
   });
 
-  el('clearLog').addEventListener('click',function(){
+  if(el('clearLog')) el('clearLog').addEventListener('click',function(){
     if(!confirm('Clear all saved rides?')) return;
     state.savedRides=[];
     state.progressions=defaultProgressions();
@@ -592,11 +595,11 @@
     if(el(id)) ['change','input'].forEach(function(evt){el(id).addEventListener(evt,function(){syncTopReadinessToMain(); renderReadiness();})})
   });
 
-  el('generateBtn').addEventListener('click',buildWeek);
-  el('regenerateBtnTop').addEventListener('click',function(){syncTopReadinessToMain(); refreshDetectedDayText(); buildWeek()});
-  el('applyReadinessBtn').addEventListener('click',applyReadiness);
-  el('jumpToLogBtn').addEventListener('click',function(){el('rideLogPanel').scrollIntoView({behavior:'smooth',block:'start'})});
-  el('resetBtn').addEventListener('click',function(){
+  if(el('generateBtn')) el('generateBtn').addEventListener('click',buildWeek);
+  if(el('regenerateBtnTop')) el('regenerateBtnTop').addEventListener('click',function(){syncTopReadinessToMain(); refreshDetectedDayText(); buildWeek()});
+  if(el('applyReadinessBtn')) el('applyReadinessBtn').addEventListener('click',applyReadiness);
+  if(el('jumpToLogBtn')) el('jumpToLogBtn').addEventListener('click',function(){if(el('rideLogPanel')) el('rideLogPanel').scrollIntoView({behavior:'smooth',block:'start'})});
+  if(el('resetBtn')) el('resetBtn').addEventListener('click',function(){
     buildDayToggles('groupDays',['Tue','Thu']);
     buildDayToggles('turboDays',['Mon','Wed','Sat']);
     buildDayToggles('restDays',['Fri','Sun']);
@@ -615,10 +618,10 @@
     buildWeek();
   });
 
-  el('libSearch').addEventListener('input',renderLibrary);
-  el('libType').addEventListener('change',renderLibrary);
+  if(el('libSearch')) el('libSearch').addEventListener('input',renderLibrary);
+  if(el('libType')) el('libType').addEventListener('change',renderLibrary);
 
-  el('themeBtn').addEventListener('click',function(){
+  if(el('themeBtn')) el('themeBtn').addEventListener('click',function(){
     var root=document.documentElement;
     if(root.getAttribute('data-theme')==='dark'){
       root.setAttribute('data-theme','light');
@@ -656,7 +659,8 @@
     buildWeek();
   }
 
-  init();
+  window.addEventListener('error', function(e){ showDebug('JavaScript error: '+e.message); });
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){try{init()}catch(err){showDebug('Init failed: '+err.message)}})} else {try{init()}catch(err){showDebug('Init failed: '+err.message)}}
 }())
 </script>
 </body>
