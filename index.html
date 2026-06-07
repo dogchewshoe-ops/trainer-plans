@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V6.9</title>
+  <title>Nello Training Planner V6.10</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <div class="badge">V6.9 · explicit preview-day logic, single readiness source, repaired today panel</div>
+      <div class="badge">V6.10 · syntax-fixed preview-day logic, single readiness source, repaired today panel</div>
       <h1>Nello Training Planner</h1>
       <p class="lead">This version keeps the Today-first layout, makes the day controls visible in the top panel, and places the readiness inputs directly above the Apply readiness button so the flow is clearer.</p>
     </div>
@@ -160,7 +160,7 @@
   function todayKey(){return new Date().toISOString().slice(0,10)}
   function realCurrentDayName(){return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()]}
   function selectedDisplayDay(){var top=el('previewDayTop'); if(top&&top.value&&top.value!=='auto') return top.value; return realCurrentDayName()}
-  function refreshDetectedDayText(){var realDay=realCurrentDayName(); var selected=(el('previewDayTop')&&el('previewDayTop').value)||'auto'; var msg='Real current day: '+realDay+' (browser local time).'; if(selected!=='auto') msg+=' Preview override: '+selected+'.'; if(el('todayDateTextTop')) el('todayDateTextTop').value=msg; if(el('todayDateText')) el('todayDateText').value=msg; if(el('previewDay')) el('previewDay').value=selected;};if(el('todayDateText')) el('todayDateText').value=msg; if(el('todayDateTextTop')) el('todayDateTextTop').value=msg; if(el('previewDayTop')&&el('previewDayTop').value!==preview){el('previewDayTop').value=preview}}
+  function refreshDetectedDayText(){var realDay=realCurrentDayName(); var selected=(el('previewDayTop')&&el('previewDayTop').value)||'auto'; var msg='Real current day: '+realDay+' (browser local time).'; if(selected!=='auto') msg+=' Preview override: '+selected+'.'; if(el('todayDateTextTop')) el('todayDateTextTop').value=msg; if(el('todayDateText')) el('todayDateText').value=msg; if(el('previewDay')) el('previewDay').value=selected;}
   var state={file:null,savedRides:loadStore(STORAGE_KEYS.rideLog,[]),readinessToday:loadStore(STORAGE_KEYS.readiness,null),progressions:loadStore(STORAGE_KEYS.progression,null),readinessHistory:loadStore(STORAGE_KEYS.readinessHistory,[])};
   var library=[{name:"Aerobic 12's #1",type:'Endurance',minutes:63,tss:56,notes:'Aerobic progression starter.'},{name:"Aerobic 12's #2",type:'Endurance',minutes:62,tss:56,notes:'Slight progression from #1.'},{name:"Aerobic 12's #3",type:'Endurance',minutes:60,tss:54,notes:'Aerobic progression continuation.'},{name:'Aerobic Development',type:'Endurance',minutes:55,tss:46,notes:'Useful lighter aerobic support day.'},{name:'90 Minute Endurance',type:'Endurance',minutes:90,tss:70,notes:'Longer aerobic ride if weather pushes you indoors.'},{name:'30min Sub-Threshold',type:'Tempo',minutes:58,tss:64,notes:'Solid controlled aerobic pressure.'},{name:'AC + Sweetspot #1',type:'Sweet spot',minutes:62,tss:90,notes:'Sweet-spot progression starter.'},{name:'AC + Sweetspot #2',type:'Sweet spot',minutes:62,tss:92,notes:'Harder follow-on from #1.'},{name:'Capacity into Sweetspot #1',type:'Sweet spot',minutes:60,tss:74,notes:'Bridge from endurance into harder work.'},{name:"12min Over-Under's",type:'Threshold',minutes:69,tss:70,notes:'Race-specific threshold control.'},{name:"40/20's into FTP #1",type:'Threshold',minutes:53,tss:64,notes:'Threshold-leaning sharpening session.'},{name:"40/20's into Threshold",type:'Threshold',minutes:57,tss:68,notes:'Threshold sharpening with repeated high-end hits.'},{name:"40/20's #1",type:'VO2 max',minutes:52,tss:55,notes:'VO2-style opener session.'},{name:"40/20's #2",type:'VO2 max',minutes:58,tss:72,notes:'Stronger progression from #1.'},{name:'40/20 Efforts',type:'VO2 max',minutes:51,tss:66,notes:'Compact hard session.'},{name:'Easy recovery 45',type:'Recovery',minutes:45,tss:28,notes:'Best fallback after a savage group ride.'},{name:'Aerobic Development Lite',type:'Recovery',minutes:55,tss:40,notes:'Easy aerobic backup.'},{name:'Group ride · Social',type:'Group ride',minutes:90,tss:60,notes:'Mostly endurance with a few surges.'},{name:'Group ride · Racey',type:'Group ride',minutes:120,tss:85,notes:'Livelier ride with tempo and above.'}];
   var progressionMap={"Aerobic 12's #1":{strand:'aerobic12s',level:1},"Aerobic 12's #2":{strand:'aerobic12s',level:2},"Aerobic 12's #3":{strand:'aerobic12s',level:3},'AC + Sweetspot #1':{strand:'acSweetspot',level:1},'AC + Sweetspot #2':{strand:'acSweetspot',level:2},"40/20's #1":{strand:'forty20s',level:1},"40/20's #2":{strand:'forty20s',level:2},'40/20 Efforts':{strand:'forty20s',level:3},"40/20's into FTP #1":{strand:'thresholdCombo',level:1},"40/20's into Threshold":{strand:'thresholdCombo',level:2},"12min Over-Under's":{strand:'thresholdCombo',level:3}};
