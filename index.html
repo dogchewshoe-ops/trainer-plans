@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nello Training Planner V6.4</title>
+  <title>Nello Training Planner V6.5</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,7 +57,7 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <div class="badge">V6.4 · fixed today logic, single readiness area, working readiness button</div>
+      <div class="badge">V6.5 · fixed today logic, single readiness area, working readiness button</div>
       <h1>Nello Training Planner</h1>
       <p class="lead">This version keeps the today-first layout, removes the duplicate readiness checker, fixes the preview/current day sync, and makes the readiness action update the app immediately.</p>
     </div>
@@ -351,8 +350,9 @@
   function latestGroupRide(){return state.savedRides.find(function(r){return r.workout==='Group ride'})||null}
   function getTodayReadiness(){return state.readinessToday&&state.readinessToday.date===todayKey()?state.readinessToday:null}
 
-  function syncTopReadinessToMain(){return true}
+  function syncTopReadinessToMain(){['Sleep','Freshness','Soreness','Motivation','Stress'].forEach(function(name){if(el('readiness'+name+'Top')&&el('readiness'+name)){el('readiness'+name).value=el('readiness'+name+'Top').value}})}
   function calculateReadiness(){
+    syncTopReadinessToMain();
     var sleep=parseInt(el('readinessSleepTop').value,10),freshness=parseInt(el('readinessFreshnessTop').value,10),soreness=parseInt(el('readinessSorenessTop').value,10),motivation=parseInt(el('readinessMotivationTop').value,10),stress=parseInt(el('readinessStressTop').value,10);
     var score=sleep+freshness+motivation+(6-soreness)+(6-stress);
     var status=score>=20?'Green':score>=14?'Amber':'Red';
@@ -490,6 +490,7 @@
     el('weekStrip').innerHTML=cards.map(function(d){return '<div class="weekMini"><strong>'+esc(d.day)+'</strong><div class="type">'+esc(d.label)+'</div><div class="work">'+esc(d.todayName||d.label)+'</div></div>'}).join('');
     el('weekGrid').innerHTML=cards.map(function(d){return '<div class="dayCard '+d.type+'"><strong>'+esc(d.day)+'</strong><div class="dtype">'+esc(d.label)+'</div><div class="dhr">'+(d.type==='rest'?'Rest':((Number(d.hrs)||0).toFixed(1)+' h'))+'</div><div class="ddesc">'+esc(d.desc)+'</div>'+(d.workoutHtml||'')+'<div class="suggestion">'+esc(d.suggestion)+'</div></div>'}).join('');
 
+    refreshDetectedDayText();
     var displayDay=selectedDisplayDay();
     var today=cards.find(function(c){return c.day===displayDay}) || cards[0];
     var isPreview=el('previewDay') && el('previewDay').value!=='auto';
@@ -579,20 +580,20 @@
   });
 
   ['eventDate','hours','goal','planStyle','level','longRideDay','fatigueLevel','ftp','previewDay','previewDayTop'].forEach(function(id){
-    if(el(id)) el(id).addEventListener('change',function(){
+    if(el(id)) ['change','input'].forEach(function(evt){el(id).addEventListener(evt,function(){
       if(id==='previewDayTop'&&el('previewDay')) el('previewDay').value=el('previewDayTop').value;
       if(id==='previewDay'&&el('previewDayTop')) el('previewDayTop').value=el('previewDay').value;
       refreshDetectedDayText();
       buildWeek();
-    })
+    })});
   });
 
   ['readinessSleepTop','readinessFreshnessTop','readinessSorenessTop','readinessMotivationTop','readinessStressTop'].forEach(function(id){
-    if(el(id)) el(id).addEventListener('change',renderReadiness)
+    if(el(id)) ['change','input'].forEach(function(evt){el(id).addEventListener(evt,function(){syncTopReadinessToMain(); renderReadiness();})})
   });
 
   el('generateBtn').addEventListener('click',buildWeek);
-  el('regenerateBtnTop').addEventListener('click',function(){refreshDetectedDayText();buildWeek()});
+  el('regenerateBtnTop').addEventListener('click',function(){syncTopReadinessToMain(); refreshDetectedDayText(); buildWeek()});
   el('applyReadinessBtn').addEventListener('click',applyReadiness);
   el('jumpToLogBtn').addEventListener('click',function(){el('rideLogPanel').scrollIntoView({behavior:'smooth',block:'start'})});
   el('resetBtn').addEventListener('click',function(){
@@ -639,6 +640,7 @@
   });
 
   function init(){
+    syncTopReadinessToMain();
     fillDaySelect('longRideDay','Tue');
     buildDayToggles('groupDays',['Tue','Thu']);
     buildDayToggles('turboDays',['Mon','Wed','Sat']);
